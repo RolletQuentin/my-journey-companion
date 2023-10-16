@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -38,7 +40,11 @@ public class SecurityConfiguration {
                         .loginPage("/login")
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout((logout) -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                );
 
         return http.build();
     }
