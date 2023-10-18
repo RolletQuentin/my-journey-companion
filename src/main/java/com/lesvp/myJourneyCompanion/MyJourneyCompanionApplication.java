@@ -2,6 +2,7 @@ package com.lesvp.myJourneyCompanion;
 
 import com.lesvp.myJourneyCompanion.model.user.User;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
+import com.lesvp.myJourneyCompanion.security.TokenManager;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -43,6 +44,8 @@ public class MyJourneyCompanionApplication {
 					new ArrayList<>(List.of("USER"))
 			);
 			userRepository.save(user);
+
+			TokenManager tokenManager = TokenManager.getInstance();
 		};
 	}
 }
