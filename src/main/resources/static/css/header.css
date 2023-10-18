@@ -1,0 +1,36 @@
+/* Ajoutez ces sélecteurs à votre fichier CSS existant */
+header nav {
+    display: flex;
+}
+
+header nav h1 {
+    color: orange;
+    justify-content: flex-start;
+}
+
+
+#nav-left ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+
+#nav-left ul li{
+    margin-left: 10px;
+}
+
+
+#nav-right{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#nav-right ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+
+#nav-right ul li{
+    margin-left: 10px;
+}

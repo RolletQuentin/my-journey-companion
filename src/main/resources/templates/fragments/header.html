@@ -1,11 +1,58 @@
 <header th:fragment="header" xmlns:sec="">
-  <h1>Header</h1>
 
-  <div sec:authorize="!isAuthenticated()">
-    <a href="/login">Login</a>
-  </div>
 
-  <div sec:authorize="isAuthenticated()">
-    <a href="/logout">Logout</a>
-  </div>
+    <nav>
+
+        <div id="nav-left">
+            <h1>My journey Companion</h1>
+            <div id="menu">
+                <ul>
+                    <li>
+                        <a href=""> Games </a>
+                    </li>
+                    <li>
+                        <a href=""> Top 10 </a>
+                    </li>
+                    <li><input type="text" placeholder="Search Bar"></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="nav-right">
+            <div sec:authorize="!isAuthenticated()" id="headerNotConnected">
+                <ul>
+                    <li>
+                        <a href="/login">Sign in</a>
+                    </li>
+                    <li>
+                        <a href="/signUp">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div sec:authorize="isAuthenticated()" id="headerConnected">
+                <div id="unroll">Profile
+                    <ul id="user-menu">
+                        <li>
+                            Username
+                        </li>
+                        <li>
+                            <a> My profile </a>
+                        <li>
+                            <a> My to do list</a>
+                        </li>
+                        <li>
+                            <a> My done list</a>
+                        </li>
+                        <li>
+                            <a href="/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </nav>
+
 </header>
