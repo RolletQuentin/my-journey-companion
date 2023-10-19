@@ -1,18 +1,30 @@
 /* Ajoutez ces sélecteurs à votre fichier CSS existant */
 header nav {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #273248;
+    color:white;
+
 }
 
 header nav h1 {
-    color: orange;
-    justify-content: flex-start;
+    color: #FC7541;
+    padding-left: 20px;
+    align-self: center;
+    width: 200px;
+}
+
+#nav-left{
+    display: flex;
+    margin-right: 50px;
 }
 
 
-#nav-left ul{
+#menu ul{
     list-style-type: none;
     display: flex;
-    flex-direction: row;
+    align-items: center;
 }
 
 #nav-left ul li{
@@ -28,9 +40,96 @@ header nav h1 {
 #nav-right ul{
     list-style-type: none;
     display: flex;
-    flex-direction: row;
+    margin-right: 50px;
 }
 
 #nav-right ul li{
     margin-left: 10px;
+}
+
+#unroll{
+    padding-right: 30px;
+}
+
+/* Menu déroulant */
+#user-menu{
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    background-color: #364971;
+    margin-left: -100px;
+    margin-top:0px;
+    border-radius: 10px 0 0 10px;
+
+    width: 150px;
+    padding-left: 5px;
+}
+
+#user-menu #username{
+    color: #FC7541;
+    padding-left: 20px;
+}
+
+#user-menu li{
+    padding: 7px;
+}
+
+#unroll:hover #user-menu{
+    visibility: visible;
+}
+#unroll:hover #user-menu:hover{
+    visibility: visible;
+}
+
+/* Liens */
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #FC7541;
+    cursor: pointer;
+}
+
+/* Search Bar*/
+.search-container{
+    display: block;
+    width: 200px;
+}
+
+input#search-bar{
+    width: 100%;
+    height: 35px;
+    padding: 0 20px;
+    border: 1px solid #D0CFCE;
+    border-radius: 30px;
+    outline: none;
+    background: #6C6C6C;
+    &:focus{
+        border: 1px solid #008ABF;
+        transition: 0.35s ease;
+        color: #008ABF;
+        &::-webkit-input-placeholder{
+            transition: opacity 0.45s ease;
+            opacity: 0;
+        }
+        &::-moz-placeholder {
+            transition: opacity 0.45s ease;
+            opacity: 0;
+        }
+        &:-ms-placeholder {
+            transition: opacity 0.45s ease;
+            opacity: 0;
+        }    }
+}
+
+.search-icon{
+    position: relative;
+    float: right;
+    width: 60px;
+    height: 60px;
+    top: -50px;
+    right: -45px;
 }
