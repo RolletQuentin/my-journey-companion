@@ -18,7 +18,7 @@ create database db_my_journey_companion;
 
 ### Set up your variables environment
 
-You have to variables to set :
+You have two variables to set :
 - DATABASE_USERNAME
 - DATABASE_PASSWORD
 
