@@ -1,0 +1,14 @@
+
+
+@font-face {
+    font-family:'ITC';
+    style:normal;
+    weight:400;
+    stretch:100;
+    src:url('../fonts/ITC Serif Gothic Std Black.otf') format("truetype");
+}
+
+*{
+    font-family: 'ITC';
+    margin: 0;
+}
