@@ -1,7 +1,7 @@
 package com.lesvp.myJourneyCompanion.security;
 
-import com.lesvp.myJourneyCompanion.model.user.Role;
-import com.lesvp.myJourneyCompanion.model.user.User;
+import com.lesvp.myJourneyCompanion.model.Role;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

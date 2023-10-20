@@ -1,7 +1,7 @@
 package com.lesvp.myJourneyCompanion;
 
-import com.lesvp.myJourneyCompanion.model.user.Role;
-import com.lesvp.myJourneyCompanion.model.user.User;
+import com.lesvp.myJourneyCompanion.model.Role;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import com.lesvp.myJourneyCompanion.security.TokenManager;
 import com.lesvp.myJourneyCompanion.service.UserService;
@@ -10,7 +10,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;

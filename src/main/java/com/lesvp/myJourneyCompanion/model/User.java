@@ -1,5 +1,6 @@
-package com.lesvp.myJourneyCompanion.model.user;
+package com.lesvp.myJourneyCompanion.model;
 
+import com.lesvp.myJourneyCompanion.model.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 

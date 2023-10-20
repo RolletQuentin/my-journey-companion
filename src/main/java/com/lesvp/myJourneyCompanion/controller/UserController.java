@@ -1,10 +1,9 @@
 package com.lesvp.myJourneyCompanion.controller;
 
-import com.lesvp.myJourneyCompanion.model.user.Role;
-import com.lesvp.myJourneyCompanion.model.user.User;
+import com.lesvp.myJourneyCompanion.model.Role;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +66,19 @@ public class UserController {
             return "Les données sont invalides";
         }
 
+        userService.update(uuid, username, email);
 
+        return "redirect:/profile";
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteUser(UUID uuid) {
+        if (uuid == null) {
+            return "Les données sont invalides"
+        }
+
+        userService.delete(uuid);
+
+        return "redirect:/";
     }
 }

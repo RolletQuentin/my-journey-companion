@@ -1,6 +1,6 @@
 package com.lesvp.myJourneyCompanion.service;
 
-import com.lesvp.myJourneyCompanion.model.user.User;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -34,6 +34,20 @@ public class UserService {
 
     public User createUser(User user) {
         return userRepository.save(user);
+    }
+
+    public User update(UUID uuid, String username, String email) {
+        User existingUser = getUser(uuid);
+
+        existingUser.setUsername(username);
+        existingUser.setEmail(email);
+
+        return userRepository.save(existingUser);
+    }
+
+    public void delete(UUID uuid) {
+        User user = getUser(uuid);
+        userRepository.delete(user);
     }
 
     // use BCryptPasswordEncoder to hash a password to not stock it as a plain text
