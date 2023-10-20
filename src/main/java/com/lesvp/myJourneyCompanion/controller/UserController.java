@@ -74,7 +74,7 @@ public class UserController {
     @DeleteMapping("/delete")
     public String deleteUser(UUID uuid) {
         if (uuid == null) {
-            return "Les données sont invalides"
+            return "Les données sont invalides";
         }
 
         userService.delete(uuid);

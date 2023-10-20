@@ -26,7 +26,7 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests((requests) -> requests
                         // pages with no authentication
-                        .requestMatchers("/", "/home", "/css/**", "/js/**")
+                        .requestMatchers("/", "/home", "/css/**", "/js/**", "/fonts/**")
                         .permitAll()
 
                         .requestMatchers("/admin")
