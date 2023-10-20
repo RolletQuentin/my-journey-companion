@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
     xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link type="text/css" rel="stylesheet" href="/css/main.css">
-    <link type="text/css" rel="stylesheet" href="/css/components.css">
-</head>
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
     <header th:replace="~{fragments/header :: header}"></header>
     <h1>Home</h1>
