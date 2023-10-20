@@ -1,17 +1,17 @@
 @font-face {
-    font-family:'ITC';
-    style:normal;
-    weight:400;
-    stretch:100;
-    src:url('../fonts/ITC Serif Gothic Std Black.otf') format("truetype");
+    font-family: 'ITC';
+    style: normal;
+    weight: 400;
+    stretch: 100;
+    src: url('../fonts/ITC Serif Gothic Std Black.otf') format("truetype");
 }
 
-*{
+* {
     font-family: 'ITC';
     margin: 0;
 }
 
-body{
+body {
     background-color: #273248;
     color: white;
 }
@@ -27,7 +27,7 @@ header nav {
     justify-content: space-between;
     align-items: center;
     background-color: #273248;
-    color:white;
+    color: white;
     padding: 20px;
 
 }
@@ -39,45 +39,45 @@ header nav h1 {
     width: 200px;
 }
 
-#nav-left{
+#nav-left {
     display: flex;
     margin-right: 50px;
     align-items: center;
 }
 
-#menu ul{
+#menu ul {
     list-style-type: none;
     display: flex;
     align-items: center;
 }
 
-#menu ul li{
+#menu ul li {
     margin-left: 10px;
-    padding-left:50px;
+    padding-left: 50px;
 }
 
 
-#nav-right{
+#nav-right {
     display: flex;
     align-items: center;
 }
 
-#nav-right ul{
+#nav-right ul {
     list-style-type: none;
     display: flex;
     margin-right: 30px;
 }
 
-#signup{
+#signup {
     margin-left: 10px;
 }
 
-#unroll{
+#unroll {
     padding-right: 30px;
 }
 
 /* Menu déroulant */
-#user-menu{
+#user-menu {
     visibility: hidden;
     flex-direction: column;
     justify-content: space-around;
@@ -89,13 +89,13 @@ header nav h1 {
     width: 200px;
 }
 
-#username{
+#username {
     color: #FC7541;
     text-align: center;
     padding: 10px 0;
 }
 
-#user-menu ul{
+#user-menu ul {
 
     flex-direction: column;
     justify-content: space-around;
@@ -103,92 +103,34 @@ header nav h1 {
 
 }
 
-#user-menu li{
+#user-menu li {
     padding: 7px 0;
 }
 
-#unroll:hover #user-menu{
+#unroll:hover #user-menu {
     visibility: visible;
 }
-#unroll:hover #user-menu:hover{
+
+#unroll:hover #user-menu:hover {
     visibility: visible;
 }
 
 /* Liens */
-a{
+ul li a {
     color: white;
     text-decoration: none;
 }
 
-a:hover{
+ul li a:hover {
     color: #FC7541;
     cursor: pointer;
 }
 
-/* Search Bar*/
-.search-container{
-    display: block;
-    width: 200px;
-    height: 40px;
-    padding-right: 40px;
-    margin: auto 40px;
-
-}
-
-input#search-bar{
-    width: 100%;
-    height: 35px;
-    padding: 0 20px;
-    border: 1px solid #6C6C6C;
-    border-radius: 30px;
-    outline: none;
-    background: #6C6C6C;
-    &:focus{
-        border: 1px solid white;
-        transition: 0.35s ease;
-        color: #008ABF;
-        &::-webkit-input-placeholder{
-            transition: opacity 0.45s ease;
-            opacity: 0;
-        }
-        &::-moz-placeholder {
-            transition: opacity 0.45s ease;
-            opacity: 0;
-        }
-        &:-ms-placeholder {
-            transition: opacity 0.45s ease;
-            opacity: 0;
-        }
-    }
-}
-
-.search-icon{
-    position: relative;
-    float: right;
-    width: 60px;
-    height: 60px;
-    top: -50px;
-    right: -45px;
-}
-
-
-
-
-
-/* Boxed button*/
-.boxed-button {
-    border: white solid 2px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition-duration: 0.3s;
-    padding: 10px 25px;
-    border-radius: 6px;
-    margin:10px;
-}
-
-.boxed-button:hover {
-    color: inherit;
-    cursor: pointer;
-    border-color: #FC7541;
+/*
+MAIN
+*/
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
