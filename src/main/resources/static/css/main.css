@@ -16,11 +16,27 @@ body {
     color: white;
 }
 
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 /*
 | -------- |
 |  HEADER  |
 | -------- |
 */
+
+#headerNotConnected {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+        display: block;
+    }
+}
 
 header nav {
     display: flex;
