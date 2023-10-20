@@ -1,6 +1,6 @@
 package com.lesvp.myJourneyCompanion.repository;
 
-import com.lesvp.myJourneyCompanion.model.user.User;
+import com.lesvp.myJourneyCompanion.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,5 +1,6 @@
-package com.lesvp.myJourneyCompanion.model.user;
+package com.lesvp.myJourneyCompanion.model;
 
+import com.lesvp.myJourneyCompanion.model.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,11 +21,11 @@ public class User {
     private String hashed_password;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles;
+    private List<Role> roles;
 
     public User() {}
 
-    public User(String username, String email, String hashed_password, List<String> roles) {
+    public User(String username, String email, String hashed_password, List<Role> roles) {
         this.username = username;
         this.email = email;
         this.hashed_password = hashed_password;

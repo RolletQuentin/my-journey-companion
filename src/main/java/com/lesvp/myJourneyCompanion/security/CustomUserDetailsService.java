@@ -1,6 +1,7 @@
 package com.lesvp.myJourneyCompanion.security;
 
-import com.lesvp.myJourneyCompanion.model.user.User;
+import com.lesvp.myJourneyCompanion.model.Role;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,10 +27,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getHashed_password(), getGrantedAuthorities(user.getRoles()));
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities(List<String> roles) {
+    private List<GrantedAuthority> getGrantedAuthorities(List<Role> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.toString()));
         }
 
         return authorities;
