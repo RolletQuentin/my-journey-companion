@@ -7,12 +7,30 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public User getUser(UUID uuid) {
+        Optional<User> userOptional = userRepository.findById(uuid);
+        User user;
+
+        if (userOptional.isPresent()) {
+            user = userOptional.get();
+        } else {
+            throw new RuntimeException("User not found");
+        }
+
+        return user;
+    }
+
+    public List<User> getUsers() { return userRepository.findAll(); }
 
     public User createUser(User user) {
         return userRepository.save(user);

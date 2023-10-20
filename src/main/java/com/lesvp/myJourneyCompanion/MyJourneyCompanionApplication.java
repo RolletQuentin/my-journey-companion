@@ -1,5 +1,6 @@
 package com.lesvp.myJourneyCompanion;
 
+import com.lesvp.myJourneyCompanion.model.user.Role;
 import com.lesvp.myJourneyCompanion.model.user.User;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import com.lesvp.myJourneyCompanion.security.TokenManager;
@@ -33,7 +34,7 @@ public class MyJourneyCompanionApplication {
 					"admin",
 					"admin@admin.com",
 					UserService.hashPassword("admin"),
-					new ArrayList<>(List.of("USER", "ADMIN"))
+					new ArrayList<>(List.of(Role.USER, Role.ADMIN))
 			);
 			userRepository.save(admin);
 
@@ -41,7 +42,7 @@ public class MyJourneyCompanionApplication {
 					"user",
 					"user@user.com",
 					UserService.hashPassword("user"),
-					new ArrayList<>(List.of("USER"))
+					new ArrayList<>(List.of(Role.USER))
 			);
 			userRepository.save(user);
 
