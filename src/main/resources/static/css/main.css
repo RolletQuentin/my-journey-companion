@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'ITC';
+    style: normal;
+    weight: 400;
+    stretch: 100;
+    src: url('../fonts/ITC Serif Gothic Std Black.otf') format("truetype");
+}
+
+* {
+    font-family: 'ITC';
+    margin: 0;
+}
+
+body {
+    background-color: #273248;
+    color: white;
+}
+
+/*
+| -------- |
+|  HEADER  |
+| -------- |
+*/
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #273248;
+    color: white;
+    padding: 20px;
+
+}
+
+header nav h1 {
+    color: #FC7541;
+    padding-left: 20px;
+    align-self: center;
+    width: 200px;
+}
+
+#nav-left {
+    display: flex;
+    margin-right: 50px;
+    align-items: center;
+}
+
+#menu ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+#menu ul li {
+    margin-left: 10px;
+    padding-left: 50px;
+}
+
+
+#nav-right {
+    display: flex;
+    align-items: center;
+}
+
+#nav-right ul {
+    list-style-type: none;
+    display: flex;
+    margin-right: 30px;
+}
+
+#signup {
+    margin-left: 10px;
+}
+
+#unroll {
+    padding-right: 30px;
+}
+
+/* Menu déroulant */
+#user-menu {
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: space-around;
+    position: absolute;
+    background-color: #364971;
+    margin-left: -80px;
+    margin-top: 0px;
+    border-radius: 10px 0 0 10px;
+    width: 200px;
+}
+
+#username {
+    color: #FC7541;
+    text-align: center;
+    padding: 10px 0;
+}
+
+#user-menu ul {
+
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 10px;
+
+}
+
+#user-menu li {
+    padding: 7px 0;
+}
+
+#unroll:hover #user-menu {
+    visibility: visible;
+}
+
+#unroll:hover #user-menu:hover {
+    visibility: visible;
+}
+
+/* Liens */
+ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    color: #FC7541;
+    cursor: pointer;
+}
+
+/*
+MAIN
+*/
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

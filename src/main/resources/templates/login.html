@@ -3,18 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <link type="text/css" rel="stylesheet" href="/css/signin.css">
+    <link type="text/css" rel="stylesheet" href="/css/components.css">
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<header th:replace="~{fragments/header :: header}"></header>
+
+<main>
+    <div class="title">
+        Sign In to My Journey Companion
+    </div>
+
+    <div>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+
+        <div class="container red-container">
+            <form th:action="@{/login}" method="post">
+                <div class="in-container">
+                    <label for="email-in">
+                        Email address :
+                    </label>
+                    <input type="text" name="email" id="email-in" class="text-input small-input"/>
+                </div>
+                <div class="in-container">
+                    <div>
+                        <label for="password-in">
+                            Password :
+                        </label>
+                        <div><a> Forgot Password ? </a></div>
+                    </div>
+                    <input type="password" name="password" id="password-in" class="text-input small-input"/>
+                </div>
+                <div>
+                    <input class="button boxed-button" type="submit" value="Sign In"/>
+                </div>
+            </form>
+            <div>
+                <div>
+                    Not registered ?
+                </div>
+                <div>
+                    <a class="sign">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
 </body>
 </html>
