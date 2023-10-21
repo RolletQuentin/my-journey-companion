@@ -57,7 +57,7 @@ public class UserController {
 
         userService.createUser(user);
 
-        return "redirect:/create";
+        return "redirect:/login";
     }
 
     @PutMapping("/update")

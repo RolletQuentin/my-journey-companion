@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head}"></head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+
+<main>
+    <div class="title">
+        Sign Up to My Journey Companion
+    </div>
+
+    <div>
+        <div class="container red-container">
+            <form th:action="@{/users/create}" method="post">
+                <div class="in-container">
+                    <label for="username-in">
+                        Username :
+                    </label>
+                    <input type="text" name="username" id="username-in" class="text-input small-input"/>
+                </div>
+                <div class="in-container">
+                    <label for="email-in">
+                        Email :
+                    </label>
+                    <input type="text" name="email" id="email-in" class="text-input small-input"/>
+                </div>
+                <div class="in-container">
+                    <div>
+                        <label for="password-in">
+                            Password :
+                        </label>
+                    </div>
+                    <input type="password" name="password" id="password-in" class="text-input small-input"/>
+                </div>
+                <div>
+                    <input class="button boxed-button" type="submit" value="Sign Up"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
