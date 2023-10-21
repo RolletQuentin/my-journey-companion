@@ -23,7 +23,7 @@
             </form>
             <div sec:authorize="!isAuthenticated()" id="headerNotConnected">
                 <a href="/login">Sign in</a>
-                <a class="button boxed-button" id="signup" href="/signUp">Sign up</a>
+                <a class="button boxed-button" id="signup" href="/signup">Sign up</a>
             </div>
 
             <div sec:authorize="isAuthenticated()" id="headerConnected">
