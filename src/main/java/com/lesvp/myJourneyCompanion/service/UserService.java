@@ -30,6 +30,12 @@ public class UserService {
         return user;
     }
 
+    public User getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+
+        return user;
+    }
+
     public List<User> getUsers() { return userRepository.findAll(); }
 
     public User createUser(User user) {

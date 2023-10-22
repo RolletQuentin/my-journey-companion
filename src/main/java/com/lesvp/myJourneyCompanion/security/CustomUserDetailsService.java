@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -24,7 +25,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getHashed_password(), getGrantedAuthorities(user.getRoles()));
+        return new CustomUserDetails(
+                user.getUsername(),
+                user.getHashed_password(),
+                getGrantedAuthorities(user.getRoles()),
+                user.getUuid()
+        );
     }
 
     private List<GrantedAuthority> getGrantedAuthorities(List<Role> roles) {
