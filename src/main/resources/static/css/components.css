@@ -93,3 +93,24 @@ input#search-bar {
     width: 300px;
 }
 
+/* Game Card */
+.game-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    transition: 0.5s ease;
+    width: 30%;
+
+    img {
+        width: 100%;
+        border-radius: 10%;
+        margin-bottom: 5px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(110%);
+    }
+}
+
