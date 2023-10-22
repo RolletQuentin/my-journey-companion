@@ -51,9 +51,8 @@ header nav {
 
 }
 
-header nav h1 {
+header nav h1 a {
     color: #FC7541;
-    padding-left: 20px;
     align-self: center;
     width: 200px;
 }
