@@ -18,11 +18,39 @@ public class Quiz {
 
     private String uuidGame;
 
-    private String uuidAuthor;
+    /*
+    @ManyToOne
+    @JoinColumn(name = "uuidGame", referencedColumnName = "uuidGame")
+    private Game uuidGame;
+    */
+
+    @ManyToOne
+    @JoinColumn(name = "uuidAuthor", referencedColumnName = "uuidUser")
+    private User author;
 
     public Quiz() {}
+
 
     public Quiz(String quizTitle) {
         this.quizTitle = quizTitle;
     }
+
+    /*
+    public Quiz(String quizTitle, Game uuidGame, User uuidAuthor) {
+        this.quizTitle = quizTitle;
+        this.game = game;
+        this.uuidAuthor = uuidAuthor;
+    }
+
+     */
+    public Quiz(String quizTitle, User author) {
+        this.quizTitle = quizTitle;
+        this.author = author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+
 }
