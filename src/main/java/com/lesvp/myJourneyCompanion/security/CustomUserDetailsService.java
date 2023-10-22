@@ -1,6 +1,7 @@
 package com.lesvp.myJourneyCompanion.security;
 
-import com.lesvp.myJourneyCompanion.model.user.User;
+import com.lesvp.myJourneyCompanion.model.Role;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,13 +25,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getHashed_password(), getGrantedAuthorities(user.getRoles()));
+        return new CustomUserDetails(
+                user.getUsername(),
+                user.getHashed_password(),
+                getGrantedAuthorities(user.getRoles()),
+                user.getUuid()
+        );
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities(List<String> roles) {
+    private List<GrantedAuthority> getGrantedAuthorities(List<Role> roles) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.toString()));
         }
 
         return authorities;
