@@ -2,8 +2,11 @@ package com.lesvp.myJourneyCompanion.controller;
 
 import com.lesvp.myJourneyCompanion.model.Role;
 import com.lesvp.myJourneyCompanion.model.User;
+import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,15 +31,24 @@ public class UserController {
         return "users";
     }
 
-    @GetMapping("/{uuid}")
-    public String getUserByUuid(@PathVariable UUID uuid, Model model) {
-        User user = userService.getUser(uuid);
+    @GetMapping("/profile")
+    public String getUserByUuid(Authentication authentication, Model model) {
 
-        if (user != null) {
-            model.addAttribute("user", user);
-            return "profile";
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            UUID uuid = userDetails.getUserUUID();
+
+
+            User user = userService.getUser(uuid);
+
+            if (user != null) {
+                model.addAttribute("user", user);
+                return "profile";
+            } else {
+                return "user-not-found";
+            }
         } else {
-            return "user-not-found";
+            return "error";
         }
     }
 
@@ -60,15 +72,15 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @PutMapping("/update")
-    public String updateUser(UUID uuid, String username, String email) {
+    @PostMapping("/update")
+    public String updateUser(String uuid, String username, String email) {
         if (username == null || email == null || uuid == null) {
             return "Les données sont invalides";
         }
 
-        userService.update(uuid, username, email);
+        userService.update(UUID.fromString(uuid), username, email);
 
-        return "redirect:/profile";
+        return "redirect:/users/profile";
     }
 
     @DeleteMapping("/delete")
