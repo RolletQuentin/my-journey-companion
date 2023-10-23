@@ -12,11 +12,11 @@ import java.util.UUID;
 public class Quiz {
     @Id
     @GeneratedValue
-    private UUID uuid;
+    private UUID uuidQuiz;
 
     private String quizTitle;
 
-    private String uuidGame;
+//    private Game game;
 
     /*
     @ManyToOne

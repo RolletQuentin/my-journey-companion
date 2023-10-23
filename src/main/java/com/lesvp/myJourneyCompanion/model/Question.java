@@ -18,12 +18,12 @@ public class Question {
     private String questionTitle;
 
     @ManyToOne
-    private Quiz uuidQuiz;
+    private Quiz quiz;
 
     public Question() {}
 
-    public Question(String questionTitle, Quiz uuidQuiz) {
+    public Question(String questionTitle, Quiz quiz) {
         this.questionTitle = questionTitle;
-        this.uuidQuiz = uuidQuiz;
+        this.quiz = quiz;
     }
 }
