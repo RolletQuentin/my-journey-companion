@@ -3,6 +3,7 @@ package com.lesvp.myJourneyCompanion.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 import java.util.UUID;
@@ -16,13 +17,13 @@ public class Question {
 
     private String questionTitle;
 
-    private String uuidGame;
-
-    private String uuidAuthor;
+    @ManyToOne
+    private Quiz uuidQuiz;
 
     public Question() {}
 
-    public Question(String quizTitle) {
-        this.questionTitle = quizTitle;
+    public Question(String questionTitle, Quiz uuidQuiz) {
+        this.questionTitle = questionTitle;
+        this.uuidQuiz = uuidQuiz;
     }
 }
