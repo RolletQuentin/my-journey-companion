@@ -44,8 +44,6 @@ public class MyJourneyCompanionApplication {
 					new ArrayList<>(List.of(Role.USER))
 			);
 			userRepository.save(user);
-
-			TokenManager tokenManager = TokenManager.getInstance();
 		};
 	}
 }
