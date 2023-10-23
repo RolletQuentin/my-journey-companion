@@ -25,7 +25,7 @@ public class Quiz {
     */
 
     @ManyToOne
-    @JoinColumn(name = "uuidAuthor", referencedColumnName = "uuidUser")
+    @JoinColumn(name = "uuidAuthor", referencedColumnName = "uuid")
     private User author;
 
     public Quiz() {}
