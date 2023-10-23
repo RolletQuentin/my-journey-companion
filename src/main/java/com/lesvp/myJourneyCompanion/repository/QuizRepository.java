@@ -8,7 +8,4 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface QuizRepository extends JpaRepository<Quiz, UUID> {
-
-    public Quiz findByUuid(UUID uuid);
-}
+public interface QuizRepository extends JpaRepository<Quiz, UUID> {}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head :: head}"></head>
+<body>
+    <header th:replace="~{fragments/header :: header}"></header>
+
+    <main class="quiz">
+
+        <h1> Create a quiz</h1>
+
+        <div class="container red-container">
+
+            <h1>Nom du jeu</h1>
+            <form>
+                <div>
+                    <label>
+                        Title
+                    </label>
+                    <input type="text" name="quizTitle" class="text-input small-input">
+                </div>
+
+                <div>
+                    <div class="question">
+                        <label for="question-1"> Question i </label>
+                        <input type="text" name="question" id="question-1" class="text-input big-input">
+                        <button class="deleteQuestion"> X </button>
+                    </div>
+                    <div class="responses">
+                        <div class="reponse">
+                            <label for="response-1"> Answer i</label>
+                            <input type="checkbox">
+                            <input type="text" name="response" id="response-1" class="text-input mid-input">
+                            <button class="deleteResponse"> X </button>
+                        </div>
+
+                        <div class="reponse">
+                            <label for="response-2"> Answer i</label>
+                            <input type="checkbox">
+                            <input type="text" name="response" id="response-2" class="text-input mid-input">
+                            <button class="deleteResponse"> X </button>
+                        </div>
+                        <button class="addAnswer"> + Add answers </button>
+                    </div>
+
+                    <button class="addQuestion"> + Add question</button>
+                </div>
+
+
+            </form>
+
+        </div>
+    </main>
+
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
+</html>
