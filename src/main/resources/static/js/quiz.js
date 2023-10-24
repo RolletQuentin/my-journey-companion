@@ -96,6 +96,19 @@ document.addEventListener('DOMContentLoaded', function () {
             questionDiv.remove();
             updateDeleteQuestionButtons();
         }
+
+        // Mettre à jour la numérotation des réponses
+        questionsDiv.querySelectorAll('.question').forEach((question, index) => {
+            const label = question.querySelector('label');
+            const input = question.querySelector('input[type="text"]');
+            const button = question.querySelector('.deleteQuestion');
+
+            label.setAttribute('for', `question-${index + 1}-${index + 1}`);
+            label.textContent = `Question ${index + 1}`;
+
+            input.setAttribute('id', `question-${index + 1}-${index + 1}`);
+            button.dataset.questionIndex = index + 1;
+        });
     }
 
     // Fonction pour mettre à jour les boutons "deleteResponse"
