@@ -17,11 +17,8 @@ import java.util.UUID;
 @Controller
 public class VideoGameController {
 
-    private final VideoGameService videoGameService;
-
-    public VideoGameController(VideoGameService videoGameService) {
-        this.videoGameService = videoGameService;
-    }
+    @Autowired
+    private VideoGameService videoGameService;
 
     @GetMapping("/video-games")
     public ResponseEntity<String> showVideoGames(Model model) {

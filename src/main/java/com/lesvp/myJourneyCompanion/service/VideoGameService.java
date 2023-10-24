@@ -19,7 +19,8 @@ import java.util.UUID;
 @Service
 public class VideoGameService {
 
-    private final VideoGameRepository videoGameRepository;
+    @Autowired
+    private VideoGameRepository videoGameRepository;
 
     public VideoGameService(VideoGameRepository videoGameRepository) {
         this.videoGameRepository = videoGameRepository;
