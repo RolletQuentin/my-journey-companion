@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <button class="deleteResponse" type="button"> X </button>
                 </div>
                 <div class="response">
-                    <label for="response-${questionCount + 1}-2"> Answer 1</label>
+                    <label for="response-${questionCount + 1}-2"> Answer 2</label>
                     <input type="checkbox">
                     <input type="text" name="response" id="response-${questionCount + 1}-2" class="text-input mid-input">
                     <button class="deleteResponse" type="button"> X </button>
