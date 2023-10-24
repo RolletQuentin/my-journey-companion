@@ -26,8 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
         newQuestionDiv.classList.add('question');
         newQuestionDiv.innerHTML = `
             <label for="question-${questionCount + 1}"> Question ${questionCount + 1} </label>
-            <input type="text" name="question" id="question-${questionCount + 1}" class="text-input big-input">
-            <button class="deleteQuestion button boxed-button" type="button"> X </button>
+            <div>
+                <input type="text" name="question" id="question-${questionCount + 1}" class="text-input big-input">
+                <button class="deleteQuestion button boxed-button" type="button"> X </button>
+            </div>
             <div class="responses">
                 <div class="response">
                     <label for="response-${questionCount + 1}-1"> Answer 1</label>
@@ -61,8 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const responseCount = responsesDiv.querySelectorAll('.response').length;
 
         // Supprimer la réponse
-        responseDiv.remove();
-        updateDeleteResponseButtons();
+        if (responseCount > 2){
+            responseDiv.remove();
+            updateDeleteResponseButtons();
+        }
 
         // Mettre à jour la numérotation des réponses
         responsesDiv.querySelectorAll('.response').forEach((response, index) => {

@@ -1,5 +1,7 @@
 .quiz form {
-    width: 85%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
 }
 .quiz .title {
     display: flex;
@@ -9,9 +11,84 @@
     align-content: center;
     justify-content: center;
     width: 60%;
+    label{
+        margin-bottom: 7px;
+    }
 }
 
-.quiz .question{
-    margin: 0 auto 20px;
-
+.quiz .questions{
+    margin: 10px 0;
+    width:100%;
+    .question{
+        margin: 10px 0;
+        width: 100%;
+        & > div{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
 }
+
+input[type=checkbox]{
+    -webkit-appearance: none; /* Pour les navigateurs basés sur Webkit */
+    -moz-appearance: none; /* Pour les navigateurs basés sur Gecko (Firefox) */
+    appearance: none;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    left: 20px;
+    background: #B8B7B7;
+    cursor: pointer;
+}
+
+/* Style du tick */
+input[type=checkbox]:checked::before {
+    content: '\2714'; /* Caractère unicode du tick */
+    font-size: 20px; /* Taille de la police */
+    color: #128000;
+    position: relative;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%); /* Centre le tick */
+}
+
+.questions div{
+    width: 100%;
+    .text-input{
+        width: 85%;
+    }
+}
+
+.quiz .responses{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .response{
+        margin: 10px 0;
+        width: 100%;
+        & > div{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .addAnswer{
+        align-self: flex-start;
+        margin: 10px 0 20px 65px;;
+    }
+}
+.responses div {
+    width: 100%;
+    .text-input {
+        width: 75%;
+    }
+}
+.response div {
+    display: flex;
+    align-items: center;
+    input{
+        margin: 0 10px;
+    }
+}
+
