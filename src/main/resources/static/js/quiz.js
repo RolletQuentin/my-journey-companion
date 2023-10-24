@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const newQuestionDiv = document.createElement('div');
         newQuestionDiv.classList.add('question');
         newQuestionDiv.innerHTML = `
+            
             <label for="question-${questionCount + 1}"> Question ${questionCount + 1} </label>
             <div>
                 <input type="text" name="question" id="question-${questionCount + 1}" class="text-input big-input">
@@ -84,8 +85,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour supprimer la question associée
     function deleteQuestion() {
-        this.parentElement.parentElement.remove();
-        updateDeleteQuestionButtons();
+
+        const questionDiv = this.parentElement.parentElement;
+        const questionsDiv = questionDiv.parentElement.parentElement;
+        const questionCount = questionsDiv.querySelectorAll('.question').length;
+
+        // Vérifier s'il reste plus d'une question
+        if (questionCount > 1) {
+            // Supprimer la question
+            questionDiv.remove();
+            updateDeleteQuestionButtons();
+        }
     }
 
     // Fonction pour mettre à jour les boutons "deleteResponse"

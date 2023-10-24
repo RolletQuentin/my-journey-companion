@@ -2,30 +2,29 @@
 <html lang="en">
 <head th:replace="~{fragments/head :: head}"></head>
 <body>
-    <header th:replace="~{fragments/header :: header}"></header>
+<header th:replace="~{fragments/header :: header}"></header>
 
-    <main class="quiz">
+<main class="quiz">
 
-        <h1> Create a quiz</h1>
+    <h1> Create a quiz</h1>
 
-        <div class="container red-container big-container">
+    <div class="container red-container big-container">
 
-            <h1> Super Mario Galaxy </h1>
-            <form>
-                <div class="title">
-                    <label>
-                        Title
-                    </label>
-                    <input type="text" name="quizTitle" class="text-input">
-                </div>
+        <h1> Super Mario Galaxy </h1>
+        <form>
+            <div class="title">
+                <label>
+                    Title
+                </label>
+                <input type="text" name="quizTitle" class="text-input">
+            </div>
 
-                <div class="questions">
-                    <div class="question">
-                        <label for="question-1"> Question 1 </label>
-                        <div>
-                            <input type="text" name="question" id="question-1" class="text-input big-input">
-                            <button class="deleteQuestion button boxed-button" type="button"> X </button>
-                        </div>
+            <div class="questions">
+                <div class="question">
+                    <label for="question-1"> Question 1 </label>
+                    <div>
+                        <input type="text" name="question" id="question-1" class="text-input big-input">
+                        <button class="deleteQuestion button boxed-button" type="button"> X</button>
                     </div>
                     <div class="responses">
                         <div class="response">
@@ -33,7 +32,7 @@
                             <div>
                                 <input type="checkbox">
                                 <input type="text" name="response" id="response-1-1" class="text-input mid-input">
-                                <button class="deleteResponse button boxed-button" type="button"> X </button>
+                                <button class="deleteResponse button boxed-button" type="button"> X</button>
                             </div>
                         </div>
 
@@ -42,23 +41,24 @@
                             <div>
                                 <input type="checkbox">
                                 <input type="text" name="response" id="response-1-2" class="text-input mid-input">
-                                <button class="deleteResponse button boxed-button" type="button"> X </button>
+                                <button class="deleteResponse button boxed-button" type="button"> X</button>
                             </div>
                         </div>
-                        <button class="addAnswer button boxed-button" type="button"> + Add answer </button>
+                        <button class="addAnswer button boxed-button" type="button"> + Add answer</button>
                     </div>
-
-                    <button class="addQuestion button boxed-button" type="button"> + Add question</button>
                 </div>
 
-                <button type="submit" class="button boxed-button">
-                    Submit
-                </button>
-            </form>
+                <button class="addQuestion button boxed-button" type="button"> + Add question</button>
+            </div>
 
-        </div>
-    </main>
+            <button type="submit" class="button boxed-button">
+                Submit
+            </button>
+        </form>
 
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
