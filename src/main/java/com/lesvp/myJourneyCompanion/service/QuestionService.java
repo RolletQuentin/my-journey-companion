@@ -4,19 +4,20 @@ import com.lesvp.myJourneyCompanion.model.Question;
 import com.lesvp.myJourneyCompanion.model.Quiz;
 import com.lesvp.myJourneyCompanion.repository.QuizRepository;
 import com.lesvp.myJourneyCompanion.repository.QuestionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
+@Service
 public class QuestionService {
 
-    private final QuestionRepository questionRepository;
-    private final QuizRepository quizRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
 
-    public QuestionService(QuestionRepository questionRepository, QuizRepository quizRepository) {
-        this.questionRepository = questionRepository;
-        this.quizRepository = quizRepository;
-    }
+    @Autowired
+    private QuizRepository quizRepository;
 
     public void createQuestion(String questionTitle, UUID uuidQuiz) {
         // Récupérez le quiz correspondant à uuidQuiz

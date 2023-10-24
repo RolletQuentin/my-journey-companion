@@ -12,80 +12,12 @@
             <span>Sort by : name</span>
         </div>
         <div class="grid">
-            <a href="/game-details">
-                <div class="game-card">
-                    <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                    <span>Super Mario Galaxy</span>
+            <a th:each="game: ${games}" th:href="'/games?uuid=' + ${game.getUuid()}" class="game-card">
+                <div class="img-container">
+                    <img th:src="${game.getUrlCover()}" th:alt="${game.getName()} + 'Game image'"/>
                 </div>
+                <span th:text="${game.getName()}"></span>
             </a>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
-            <div class="game-card">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="random game image"/>
-                <span>Super Mario Galaxy</span>
-            </div>
         </div>
     </div>
 </main>

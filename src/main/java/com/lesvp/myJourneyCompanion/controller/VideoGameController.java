@@ -1,39 +1,57 @@
 package com.lesvp.myJourneyCompanion.controller;
 
-import com.lesvp.myJourneyCompanion.model.user.VideoGame;
+import com.lesvp.myJourneyCompanion.model.VideoGame;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
 
 @Controller
 public class VideoGameController {
 
-    private final VideoGameService videoGameService;
+    @Autowired
+    private VideoGameService videoGameService;
 
-    public VideoGameController(VideoGameService videoGameService) {
-        this.videoGameService = videoGameService;
-    }
-
-    @GetMapping("/video-games")
-    public ResponseEntity<String> showVideoGames(Model model) {
+    @GetMapping("/games/all")
+    public String showVideoGames(Model model) {
         try {
-            var videoGamesData = videoGameService.getVideoGames();
-            model.addAttribute("videoGames", videoGamesData);
+            List<VideoGame> videoGamesData = videoGameService.getVideoGames();
+            model.addAttribute("games", videoGamesData);
         } catch (Throwable e) {
-            return ResponseEntity
-                    .internalServerError()
-                    .body(e.getMessage());
+            return "error";
         }
 
-        return ResponseEntity.ok("videoGames");
+        return "games";
+    }
+
+    @GetMapping("/")
+    public String showVideoGamesHome(Model model) {
+        try {
+            List<VideoGame> videoGamesData = videoGameService.getVideoGames();
+            model.addAttribute("games", videoGamesData);
+        } catch (Throwable e) {
+            return "error";
+        }
+
+        return "home";
+    }
+
+    @GetMapping("/games")
+    public String showVideoGameDetails(@RequestParam String uuid, Model model) {
+        try {
+            VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuid));
+            model.addAttribute("game", videoGameData);
+        } catch (Throwable e) {
+            return "error";
+        }
+
+        return "gameDetails";
     }
 }
