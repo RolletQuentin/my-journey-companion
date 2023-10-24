@@ -1,19 +1,23 @@
 /* Boxed button*/
 .boxed-button {
-    display: block;
     border: white solid 2px;
     text-align: center;
     cursor: pointer;
     transition-duration: 0.3s;
     padding: 10px 25px;
     border-radius: 6px;
+    background: none;
+    color: inherit;
+    &:hover{
+        color: inherit;
+        cursor: pointer;
+        border-color: #FC7541;
+    }
+    &:disabled{
+        cursor: not-allowed;
+    }
 }
 
-.boxed-button:hover {
-    color: inherit;
-    cursor: pointer;
-    border-color: #FC7541;
-}
 
 /* Search Bar*/
 .search-container {
@@ -76,6 +80,10 @@ input#search-bar {
     border: 3px solid #FFFFFF;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 70px;
+}
+
+.big-container{
+    width: 60vw;
 }
 
 .red-container{
