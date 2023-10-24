@@ -12,7 +12,7 @@
             <span>Sort by : name</span>
         </div>
         <div class="grid">
-            <a th:each="game: ${games}" href="/game-details" class="game-card">
+            <a th:each="game: ${games}" th:href="'/games?uuid=' + ${game.getUuid()}" class="game-card">
                 <div class="img-container">
                     <img th:src="${game.getUrlCover()}" th:alt="${game.getName()} + 'Game image'"/>
                 </div>
