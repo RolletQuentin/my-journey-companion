@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                         // pages with no authentication
                         .requestMatchers(
                                 "/", "/home",
-                                "/games",
+                                "/games", "/games/*",
                                 "/topten",
                                 "/game-details", "game-details/*",
                                 "/error",
