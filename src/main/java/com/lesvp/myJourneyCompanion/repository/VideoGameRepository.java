@@ -1,6 +1,6 @@
 package com.lesvp.myJourneyCompanion.repository;
 
-import com.lesvp.myJourneyCompanion.model.user.VideoGame;
+import com.lesvp.myJourneyCompanion.model.VideoGame;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

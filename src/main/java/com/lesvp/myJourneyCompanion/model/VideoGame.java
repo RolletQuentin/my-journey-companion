@@ -1,5 +1,6 @@
-package com.lesvp.myJourneyCompanion.model.user;
+package com.lesvp.myJourneyCompanion.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,19 +19,23 @@ public class VideoGame {
 
     private String name;
 
+    @Column(length = 3000)
     private String description;
 
     private int mark;
 
     private String urlCover;
 
+    private String studio;
+
     private Date releaseDate;
 
-    public VideoGame(String name, String description, int mark, String urlCover, Date releaseDate) {
+    public VideoGame(String name, String description, int mark, String urlCover, String studio, Date releaseDate) {
         this.name = name;
         this.description = description;
         this.mark = mark;
         this.urlCover = urlCover;
+        this.studio = studio;
         this.releaseDate = releaseDate;
     }
 
