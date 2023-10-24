@@ -1,0 +1,17 @@
+.quiz form {
+    width: 85%;
+}
+.quiz .title {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    width: 60%;
+}
+
+.quiz .question{
+    margin: 0 auto 20px;
+
+}

@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
         newResponseDiv.classList.add('response');
         newResponseDiv.innerHTML = `
             <label for="response-${responseCount + 1}-${responseCount + 1}"> Answer ${responseCount + 1}</label>
-            <input type="checkbox">
-            <input type="text" name="response" id="response-${responseCount + 1}-${responseCount + 1}" class="text-input mid-input">
-            <button class="deleteResponse" type="button"> X </button>
+            <div>
+                <input type="checkbox">
+                <input type="text" name="response" id="response-${responseCount + 1}-${responseCount + 1}" class="text-input mid-input">
+                <button class="deleteResponse button boxed-button" type="button"> X </button>
+            </div>
         `;
         responsesDiv.insertBefore(newResponseDiv, this);
         updateDeleteResponseButtons();
@@ -25,21 +27,25 @@ document.addEventListener('DOMContentLoaded', function () {
         newQuestionDiv.innerHTML = `
             <label for="question-${questionCount + 1}"> Question ${questionCount + 1} </label>
             <input type="text" name="question" id="question-${questionCount + 1}" class="text-input big-input">
-            <button class="deleteQuestion" type="button"> X </button>
+            <button class="deleteQuestion button boxed-button" type="button"> X </button>
             <div class="responses">
                 <div class="response">
                     <label for="response-${questionCount + 1}-1"> Answer 1</label>
-                    <input type="checkbox">
-                    <input type="text" name="response" id="response-${questionCount + 1}-1" class="text-input mid-input">
-                    <button class="deleteResponse" type="button"> X </button>
+                    <div>
+                        <input type="checkbox">
+                        <input type="text" name="response" id="response-${questionCount + 1}-1" class="text-input mid-input">
+                        <button class="deleteResponse button boxed-button" type="button"> X </button>
+                    </div>
                 </div>
                 <div class="response">
                     <label for="response-${questionCount + 1}-2"> Answer 2</label>
-                    <input type="checkbox">
-                    <input type="text" name="response" id="response-${questionCount + 1}-2" class="text-input mid-input">
-                    <button class="deleteResponse" type="button"> X </button>
+                    <div>
+                        <input type="checkbox">
+                        <input type="text" name="response" id="response-${questionCount + 1}-2" class="text-input mid-input">
+                        <button class="deleteResponse button boxed-button" type="button"> X </button>                       
+                    </div>
                 </div>
-                <button class="addAnswer" type="button"> + Add answers </button>
+                <button class="addAnswer button boxed-button" type="button"> + Add answers </button>
             </div>
         `;
         questionsDiv.insertBefore(newQuestionDiv, this);
@@ -50,8 +56,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour supprimer la réponse associée
     function deleteResponse() {
-        const responseDiv = this.parentElement;
-        const responsesDiv = responseDiv.parentElement;
+        const responseDiv = this.parentElement.parentElement;
+        const responsesDiv = responseDiv.parentElement.parentElement;
         const responseCount = responsesDiv.querySelectorAll('.response').length;
 
         // Supprimer la réponse
@@ -74,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour supprimer la question associée
     function deleteQuestion() {
-        this.parentElement.remove();
+        this.parentElement.parentElement.remove();
         updateDeleteQuestionButtons();
     }
 
