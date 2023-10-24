@@ -91,7 +91,7 @@ public class MyJourneyCompanionApplication {
 					"RimWorld",
 					"RimWorld is a construction and management simulation video game developed and published by Canadian-based developer Ludeon Studios.[3] Originally called Eclipse Colony, it was initially released as a Kickstarter crowdfunding project in early access for Microsoft Windows, macOS, and Linux in November 2013, and was released on October 17, 2018. The game was released for PlayStation 4 and Xbox One as RimWorld Console Edition on July 29, 2022, with development and publishing being handled by Double Eleven.[4] Rather than a test of skill or a challenge, the game is intended to serve as an AI-powered \"story generator\", where the game is used as the medium for players to experience narrative adventures. The game has received generally positive reviews from critics.",
 					96,
-					"https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Rimworld_logo.png/220px-Rimworld_logo.png",
+					"https://media.senscritique.com/media/000020160553/300/rimworld.jpg",
 					"Ludeon Studios",
 					new Date(2022, 7, 29)
 			));

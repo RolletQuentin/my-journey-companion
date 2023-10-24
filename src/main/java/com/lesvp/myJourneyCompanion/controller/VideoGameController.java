@@ -1,29 +1,32 @@
 package com.lesvp.myJourneyCompanion.controller;
 
+import com.lesvp.myJourneyCompanion.model.VideoGame;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
+@RequestMapping("/games")
 public class VideoGameController {
 
     @Autowired
     private VideoGameService videoGameService;
 
-    @GetMapping("/video-games")
-    public ResponseEntity<String> showVideoGames(Model model) {
+    @GetMapping("/all")
+    public String showVideoGames(Model model) {
         try {
-            var videoGamesData = videoGameService.getVideoGames();
-            model.addAttribute("videoGames", videoGamesData);
+            List<VideoGame> videoGamesData = videoGameService.getVideoGames();
+            model.addAttribute("games", videoGamesData);
         } catch (Throwable e) {
-            return ResponseEntity
-                    .internalServerError()
-                    .body(e.getMessage());
+            return "error";
         }
 
-        return ResponseEntity.ok("videoGames");
+        return "games";
     }
 }
