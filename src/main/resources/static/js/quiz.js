@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Fonction pour ajouter une div "response"
     function addResponse() {
         const responsesDiv = this.parentElement;
-        const responseCount = responsesDiv.querySelectorAll('.response').length;
+        let responseCount = responsesDiv.querySelectorAll('.response').length;
         const newResponseDiv = document.createElement('div');
         newResponseDiv.classList.add('response');
         newResponseDiv.innerHTML = `
@@ -16,12 +16,21 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
         responsesDiv.insertBefore(newResponseDiv, this);
         updateDeleteResponseButtons();
+
+        // Update delete answer button
+        responseCount = responsesDiv.querySelectorAll('.response').length;
+        if (responseCount > 2){
+            responsesDiv.querySelectorAll('.response').forEach((response, index) => {
+                const button = response.querySelector('.deleteResponse');
+                button.disabled = false;
+            });
+        }
     }
 
     // Fonction pour ajouter une div "question"
     function addQuestion() {
         const questionsDiv = this.parentElement;
-        const questionCount = questionsDiv.children.length - 1; // Exclut le bouton "addQuestion"
+        let questionCount = questionsDiv.children.length - 1; // Exclut le bouton "addQuestion"
         const newQuestionDiv = document.createElement('div');
         newQuestionDiv.classList.add('question');
         newQuestionDiv.innerHTML = `
@@ -55,13 +64,22 @@ document.addEventListener('DOMContentLoaded', function () {
         updateDeleteQuestionButtons();
         updateDeleteResponseButtons();
         updateAddAnswerButtons();
+
+        // Update delete question button
+        questionCount = questionsDiv.querySelectorAll('.question').length;
+        if (questionCount > 1){
+            questionsDiv.querySelectorAll('.question').forEach((question, index) => {
+                const button = question.querySelector('.deleteQuestion');
+                button.disabled = false;
+            });
+        }
     }
 
     // Fonction pour supprimer la réponse associée
     function deleteResponse() {
         const responseDiv = this.parentElement.parentElement;
         const responsesDiv = responseDiv.parentElement.parentElement;
-        const responseCount = responsesDiv.querySelectorAll('.response').length;
+        let responseCount = responsesDiv.querySelectorAll('.response').length;
 
         // Supprimer la réponse
         if (responseCount > 2){
@@ -81,6 +99,15 @@ document.addEventListener('DOMContentLoaded', function () {
             input.setAttribute('id', `response-${index + 1}-${index + 1}`);
             button.dataset.responseIndex = index + 1;
         });
+
+        // Update delete answer button
+        responseCount = responsesDiv.querySelectorAll('.response').length;
+        if (responseCount === 2){
+            responsesDiv.querySelectorAll('.response').forEach((response, index) => {
+                const button = response.querySelector('.deleteResponse');
+                button.disabled = true;
+            });
+        }
     }
 
     // Fonction pour supprimer la question associée
@@ -88,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const questionDiv = this.parentElement.parentElement;
         const questionsDiv = questionDiv.parentElement.parentElement;
-        const questionCount = questionsDiv.querySelectorAll('.question').length;
+        let questionCount = questionsDiv.querySelectorAll('.question').length;
 
         // Vérifier s'il reste plus d'une question
         if (questionCount > 1) {
@@ -97,7 +124,16 @@ document.addEventListener('DOMContentLoaded', function () {
             updateDeleteQuestionButtons();
         }
 
-        // Mettre à jour la numérotation des réponses
+        // Update delete question button
+        questionCount = questionsDiv.querySelectorAll('.question').length;
+        if (questionCount === 1){
+            questionsDiv.querySelectorAll('.question').forEach((question, index) => {
+                const button = question.querySelector('.deleteQuestion');
+                button.disabled = true;
+            });
+        }
+
+        // Mettre à jour la numérotation des questions
         questionsDiv.querySelectorAll('.question').forEach((question, index) => {
             const label = question.querySelector('label');
             const input = question.querySelector('input[type="text"]');

@@ -8,13 +8,16 @@
     border-radius: 6px;
     background: none;
     color: inherit;
+    &:hover{
+        color: inherit;
+        cursor: pointer;
+        border-color: #FC7541;
+    }
+    &:disabled{
+        cursor: not-allowed;
+    }
 }
 
-.boxed-button:hover {
-    color: inherit;
-    cursor: pointer;
-    border-color: #FC7541;
-}
 
 /* Search Bar*/
 .search-container {
