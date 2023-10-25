@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div>
                         <input type="checkbox">
                         <input type="text" name="response" id="response-${questionCount + 1}-1" class="text-input mid-input">
-                        <button class="deleteResponse button boxed-button" type="button"> X </button>
+                        <button class="deleteResponse button boxed-button" type="button" disabled> X </button>
                     </div>
                 </div>
                 <div class="response">
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div>
                         <input type="checkbox">
                         <input type="text" name="response" id="response-${questionCount + 1}-2" class="text-input mid-input">
-                        <button class="deleteResponse button boxed-button" type="button"> X </button>                       
+                        <button class="deleteResponse button boxed-button" type="button" disabled> X </button>                       
                     </div>
                 </div>
                 <button class="addAnswer button boxed-button" type="button"> + Add answers </button>

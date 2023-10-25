@@ -17,6 +17,7 @@
             position: absolute;
             bottom: -25px;
             font-size: 3em;
+            text-shadow: black 3px 2px 2px;
         }
     }
 
