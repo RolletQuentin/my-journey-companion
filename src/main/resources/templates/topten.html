@@ -7,78 +7,36 @@
 <main class="topten">
     <h1>Ten first games marked by the players</h1>
     <div class="podium">
-        <div class="rank second">
+        <a th:href="'/games?uuid=' + ${games.get(1).getUuid()}" class="rank second">
             <span class="number">2</span>
             <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
+                <img th:src="${games.get(1).getUrlCover()}" th:alt="${games.get(1).getName()}" />
             </div>
-            <span class="title">Super Mario Galaxy</span>
-        </div>
-        <div class="rank first">
+            <span th:text="${games.get(1).getName()}" class="title"></span>
+        </a>
+        <a th:href="'/games?uuid=' + ${games.get(0).getUuid()}" class="rank first">
             <span class="number">1</span>
             <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
+                <img th:src="${games.get(0).getUrlCover()}" th:alt="${games.get(0).getName()}" />
             </div>
-            <span class="title">Super Mario Galaxy</span>
-        </div>
-        <div class="rank third">
+            <span th:text="${games.get(0).getName()}" class="title"></span>
+        </a>
+        <a th:href="'/games?uuid=' + ${games.get(2).getUuid()}" class="rank third">
             <span class="number">3</span>
             <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
+                <img th:src="${games.get(2).getUrlCover()}" th:alt="${games.get(2).getName()}" />
             </div>
-            <span class="title">Super Mario Galaxy</span>
-        </div>
+            <span th:text="${games.get(2).getName()}" class="title"></span>
+        </a>
     </div>
     <div class="ranking">
-        <div>
+        <a th:each="i: ${#numbers.sequence(3, 9)}" th:href="'/games?uuid=' + ${games.get(i).getUuid()}">
             <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
+                <img th:src="${games.get(i).getUrlCover()}" th:alt="${games.get(i).getName()}" />
             </div>
-            <h2>Super Mario Galaxy</h2>
-            <span>4</span>
-        </div>
-        <div>
-            <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
-            </div>
-            <h2>Super Mario Galaxy</h2>
-            <span>5</span>
-        </div>
-        <div>
-            <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
-            </div>
-            <h2>Super Mario Galaxy</h2>
-            <span>6</span>
-        </div>
-        <div>
-            <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
-            </div>
-            <h2>Super Mario Galaxy</h2>
-            <span>7</span>
-        </div>
-        <div>
-            <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
-            </div>
-            <h2>Super Mario Galaxy</h2>
-            <span>8</span>
-        </div>
-        <div>
-            <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
-            </div>
-            <h2>Super Mario Galaxy</h2>
-            <span>9</span>
-        </div>
-        <div>
-            <div class="img-container">
-                <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/wii_24/SI_Wii_SuperMarioGalaxy_image1600w.jpg" alt="Video Game" />
-            </div>
-            <h2>Super Mario Galaxy</h2>
-            <span>10</span>
-        </div>
+            <h2 th:text="${games.get(i).getName()}"></h2>
+            <span th:text="${i+1}"></span>
+        </a>
     </div>
 </main>
 
