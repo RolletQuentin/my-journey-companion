@@ -16,7 +16,7 @@
         </div>
         <div class="game-grid">
             <div class="grid">
-                <a th:each="i: ${#numbers.sequence(1, 9)}" th:href="'/games?uuid=' + ${games.get(i).getUuid()}" class="game-card">
+                <a th:each="i: ${#numbers.sequence(0, 8)}" th:href="'/games?uuid=' + ${games.get(i).getUuid()}" class="game-card">
                     <div class="img-container">
                         <img th:src="${games.get(i).getUrlCover()}" th:alt="${games.get(i).getName()} + 'Game image'"/>
                     </div>

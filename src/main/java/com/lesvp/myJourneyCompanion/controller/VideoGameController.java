@@ -54,4 +54,16 @@ public class VideoGameController {
 
         return "gameDetails";
     }
+
+    @GetMapping("/games/topten")
+    public String showTopTen(Model model) {
+        try {
+            List<VideoGame> videoGamesData = videoGameService.getTopTen();
+            model.addAttribute("games", videoGamesData);
+        } catch (Throwable e) {
+            return "error";
+        }
+
+        return "topten";
+    }
 }
