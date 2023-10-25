@@ -16,16 +16,12 @@ public class Quiz {
 
     private String quizTitle;
 
-//    private Game game;
-
-    /*
     @ManyToOne
-    @JoinColumn(name = "uuidGame", referencedColumnName = "uuidGame")
-    private Game uuidGame;
-    */
+    @JoinColumn(name = "game", referencedColumnName = "uuid")
+    private VideoGame game;
 
     @ManyToOne
-    @JoinColumn(name = "uuidAuthor", referencedColumnName = "uuid")
+    @JoinColumn(name = "author", referencedColumnName = "uuid")
     private User author;
 
     public Quiz() {}

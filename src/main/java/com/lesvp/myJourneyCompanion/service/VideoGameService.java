@@ -14,10 +14,6 @@ public class VideoGameService {
     @Autowired
     private VideoGameRepository videoGameRepository;
 
-    public VideoGameService(VideoGameRepository videoGameRepository) {
-        this.videoGameRepository = videoGameRepository;
-    }
-
     public VideoGame createVideoGame(VideoGame videoGame){
         return videoGameRepository.save(videoGame);
     }
@@ -27,11 +23,23 @@ public class VideoGameService {
     }
 
     public VideoGame getVideoGame(UUID uuid){
-        return videoGameRepository.findByUuid(uuid);
+        return videoGameRepository.findById(uuid).get();
     }
 
     public List<VideoGame> getVideoGames(){
         return videoGameRepository.findAll();
+    }
+
+    public List<VideoGame> getTopTen() {
+        // Get all the video games by order of mark DESC
+        List<VideoGame> topTenGames = videoGameRepository.findAllByOrderByMarkDesc();
+
+        // Reduce the list to ten elements
+        if (topTenGames.size() > 10) {
+            topTenGames = topTenGames.subList(0, 10);
+        }
+
+        return topTenGames;
     }
 
     public void delete(UUID uuid){

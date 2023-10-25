@@ -1,9 +1,6 @@
 package com.lesvp.myJourneyCompanion.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.UUID;
@@ -17,7 +14,9 @@ public class Question {
 
     private String questionTitle;
 
+
     @ManyToOne
+    @JoinColumn(name = "quiz", referencedColumnName = "uuidQuiz")
     private Quiz quiz;
 
     public Question() {}
