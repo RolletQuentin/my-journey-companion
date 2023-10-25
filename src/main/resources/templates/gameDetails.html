@@ -32,7 +32,7 @@
             <div class="quiz">
                 <h2>All the quiz about this game</h2>
                 <div class="quiz-list">
-                    <a href="/answerQuiz" class="quiz-item">
+                    <a th:href="'/answerQuiz?uuid=' + ${game.getUuid()}" class="quiz-item">
                         <h3>Name quiz 1</h3>
                         <span>By NameUser</span>
                     </a>
@@ -49,7 +49,7 @@
                         <span>By NameUser</span>
                     </a>
                 </div>
-                <a href="/createQuiz" class="button boxed-button">Create a new quiz</a>
+                <a th:href="'/createQuiz?uuid=' + ${game.getUuid()}" class="button boxed-button">Create a new quiz</a>
             </div>
         </div>
         <div class="score" th:text="${game.getMark()}"></div>
