@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newResponseDiv.innerHTML = `
             <label for="response-${responseCount + 1}-${responseCount + 1}"> Answer ${responseCount + 1}</label>
             <div>
-                <input type="checkbox">
+                <input type="checkbox" id="isGoodAnswer-${responseCount + 1}-${responseCount + 1}">
                 <input type="text" name="response" id="response-${responseCount + 1}-${responseCount + 1}" class="text-input mid-input">
                 <button class="deleteResponse button boxed-button" type="button"> X </button>
             </div>
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="response">
                     <label for="response-${questionCount + 1}-1"> Answer 1</label>
                     <div>
-                        <input type="checkbox">
+                        <input type="checkbox" id="isGoodAnswer-${questionCount + 1}-1">
                         <input type="text" name="response" id="response-${questionCount + 1}-1" class="text-input mid-input">
                         <button class="deleteResponse button boxed-button" type="button" disabled> X </button>
                     </div>
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="response">
                     <label for="response-${questionCount + 1}-2"> Answer 2</label>
                     <div>
-                        <input type="checkbox">
+                        <input type="checkbox" id="isGoodAnswer-${questionCount + 1}-2">
                         <input type="text" name="response" id="response-${questionCount + 1}-2" class="text-input mid-input">
                         <button class="deleteResponse button boxed-button" type="button" disabled> X </button>                       
                     </div>
