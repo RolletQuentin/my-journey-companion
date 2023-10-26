@@ -18,7 +18,7 @@ public class QuestionService {
 
     @Autowired
     private QuizRepository quizRepository;
-
+/*
     public void createQuestion(String questionTitle, UUID uuidQuiz) {
         // Récupérez le quiz correspondant à uuidQuiz
         var quizOptional = quizRepository.findById(uuidQuiz);
@@ -30,5 +30,7 @@ public class QuestionService {
             throw new NoSuchElementException("No value present");
         }
     }
+
+ */
 }
 

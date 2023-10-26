@@ -15,6 +15,8 @@ public class Answer {
 
     private String answerTitle;
 
+    private boolean isCorrect;
+
     @ManyToOne
     @JoinColumn(name = "question", referencedColumnName = "uuid")
     private Question question;

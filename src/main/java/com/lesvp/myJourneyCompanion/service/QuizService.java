@@ -18,6 +18,7 @@ public class QuizService {
     @Autowired
     private UserRepository userRepository;
 
+    /*
     public Quiz createQuiz(String quizTitle, UUID uuidAuthor) {
         Quiz quiz = new Quiz(quizTitle);
 
@@ -33,5 +34,5 @@ public class QuizService {
             return null; // Handle case where game or author with provided UUIDs doesn't exist
         }
     }
-
+*/
 }

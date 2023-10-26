@@ -24,29 +24,17 @@ public class Quiz {
     @JoinColumn(name = "author", referencedColumnName = "uuid")
     private User author;
 
+    @OneToMany
+    private List<Question> questions;
+
     public Quiz() {}
 
+    public Quiz(String quizTitle, List<Question> questions, VideoGame game, User author) {
 
-    public Quiz(String quizTitle) {
         this.quizTitle = quizTitle;
-    }
-
-    /*
-    public Quiz(String quizTitle, Game uuidGame, User uuidAuthor) {
-        this.quizTitle = quizTitle;
+        this.questions = questions;
         this.game = game;
-        this.uuidAuthor = uuidAuthor;
-    }
-
-     */
-    public Quiz(String quizTitle, User author) {
-        this.quizTitle = quizTitle;
         this.author = author;
     }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
 
 }

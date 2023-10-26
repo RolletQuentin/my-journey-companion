@@ -11,7 +11,7 @@
     <div class="container red-container big-container">
 
         <h1 th:text="${game.getName()}"></h1>
-        <form>
+        <form th:action="@{/quiz/create}" method="post">
             <div class="title">
                 <label>
                     Title
