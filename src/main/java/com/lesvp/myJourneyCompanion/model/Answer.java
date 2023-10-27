@@ -20,4 +20,11 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "question", referencedColumnName = "uuid")
     private Question question;
+
+    public Answer() {}
+
+    public Answer(String answerTitle, boolean isCorrect) {
+        this.answerTitle = answerTitle;
+        this.isCorrect = isCorrect;
+    }
 }

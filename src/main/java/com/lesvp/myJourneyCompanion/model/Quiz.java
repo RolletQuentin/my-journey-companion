@@ -29,12 +29,18 @@ public class Quiz {
 
     public Quiz() {}
 
-    public Quiz(String quizTitle, List<Question> questions, VideoGame game, User author) {
-
+    public Quiz(String quizTitle, VideoGame game, User author, List<Question> questions) {
         this.quizTitle = quizTitle;
-        this.questions = questions;
         this.game = game;
         this.author = author;
+        this.questions = questions;
+        // Mettre à jour les références de chaque réponse à cette question
+        questions.forEach(question -> {
+            question.setQuiz(this);
+            question.getAnswers().forEach(answer -> answer.setQuestion(question));
+        });
     }
+
+
 
 }
