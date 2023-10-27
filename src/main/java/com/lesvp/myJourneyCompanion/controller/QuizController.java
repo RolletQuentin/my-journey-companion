@@ -38,14 +38,13 @@ public class QuizController {
     }
 
     @GetMapping("/answerQuiz")
-    public String showAnswerQuiz(@RequestParam String uuid, Model model) {
+    public String showAnswerQuiz(@RequestParam String uuidGame, Model model) {
         try {
-            VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuid));
-            model.addAttribute("game", videoGameData);
+            Quiz quiz = quizService.getQuiz(UUID.fromString(uuidGame));
+            model.addAttribute("quiz", quiz);
         } catch (Throwable e) {
             return "error";
         }
-
         return "answerQuiz";
     }
 /*

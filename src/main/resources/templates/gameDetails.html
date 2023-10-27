@@ -32,21 +32,9 @@
             <div class="quiz">
                 <h2>All the quiz about this game</h2>
                 <div class="quiz-list">
-                    <a th:href="'/answerQuiz?uuid=' + ${game.getUuid()}" class="quiz-item">
-                        <h3>Name quiz 1</h3>
-                        <span>By NameUser</span>
-                    </a>
-                    <a href="/" class="quiz-item">
-                        <h3>Name quiz 2</h3>
-                        <span>By NameUser</span>
-                    </a>
-                    <a href="/" class="quiz-item">
-                        <h3>Name quiz 3</h3>
-                        <span>By NameUser</span>
-                    </a>
-                    <a href="/" class="quiz-item">
-                        <h3>Name quiz 4</h3>
-                        <span>By NameUser</span>
+                    <a th:each="quiz: ${quiz}" th:href="'/answer?uuid=' + ${quiz.getUuidQuiz()}" class="quiz-item">
+                        <h3 th:text="${quiz.getQuizTitle()}"></h3>
+                        <span th:text="${quiz.getAuthor().getUsername()}"></span>
                     </a>
                 </div>
                 <a th:href="'/createQuiz?uuid=' + ${game.getUuid()}" class="button boxed-button">Create a new quiz</a>
