@@ -2,11 +2,13 @@ package com.lesvp.myJourneyCompanion.service;
 
 import com.lesvp.myJourneyCompanion.model.Quiz;
 import com.lesvp.myJourneyCompanion.model.User;
+import com.lesvp.myJourneyCompanion.model.VideoGame;
 import com.lesvp.myJourneyCompanion.repository.QuizRepository;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -17,6 +19,13 @@ public class QuizService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public List<Quiz> getQuizByVideoGame(VideoGame game) {
+        return quizRepository.findByGame(game);
+    }
+    public Quiz getQuiz(UUID uuid) {
+        return quizRepository.findById(uuid).get();
+    }
 
     /*
     public Quiz createQuiz(String quizTitle, UUID uuidAuthor) {
