@@ -1,10 +1,7 @@
 package com.lesvp.myJourneyCompanion;
 
-import com.lesvp.myJourneyCompanion.model.Role;
-import com.lesvp.myJourneyCompanion.model.User;
-import com.lesvp.myJourneyCompanion.model.VideoGame;
-import com.lesvp.myJourneyCompanion.repository.UserRepository;
-import com.lesvp.myJourneyCompanion.repository.VideoGameRepository;
+import com.lesvp.myJourneyCompanion.model.*;
+import com.lesvp.myJourneyCompanion.repository.*;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,10 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @SpringBootApplication
 public class MyJourneyCompanionApplication {
@@ -29,6 +23,14 @@ public class MyJourneyCompanionApplication {
 
 	@Autowired
 	private VideoGameRepository videoGameRepository;
+
+	@Autowired
+	private QuizRepository quizRepository;
+
+	@Autowired
+	private AnswerRepository answerRepository;
+	@Autowired
+	private QuestionRepository questionRepository;
 
 	// to fill the database at the start of the application
 	@Bean
@@ -186,6 +188,109 @@ public class MyJourneyCompanionApplication {
 					"Valve",
 					new Date(2007, 9, 10)
 			));
+
+			//Quiz 1 for Portal
+			Quiz portalQuiz1 = new Quiz(
+					"Portal Quiz",
+					videoGameRepository.findByName("Portal"),
+					userRepository.findByUsername("admin"),
+					Arrays.asList(
+							new Question("What is the main tool used by the player in Portal ?", Arrays.asList(
+									new Answer("Portal Gun", true),
+									new Answer("Gravity Gun", false),
+									new Answer("Wrench", false)
+							)),
+							new Question("Who is the main antagonist in Portal ?", Arrays.asList(
+									new Answer("GLaDOS", true),
+									new Answer("Chell", false),
+									new Answer("Wheatley", false)
+							))
+					)
+			);
+			quizRepository.save(portalQuiz1);
+
+			Quiz portalQuiz2 = new Quiz(
+					"Portal Quiz 2",
+					videoGameRepository.findByName("Portal"),
+					userRepository.findByUsername("admin"),
+					Arrays.asList(
+					new Question("What is the name of the research company in Portal?", Arrays.asList(
+							new Answer("Aperture Science", true),
+							new Answer("Black Mesa", false),
+							new Answer("Cyberdyne Systems", false)
+					)),
+					new Question("What is the signature color of Portal's portals?", Arrays.asList(
+							new Answer("Blue and Orange", true),
+							new Answer("Green and Red", false),
+							new Answer("Yellow and Purple", false)
+					))
+			));
+			quizRepository.save(portalQuiz2);
+
+
+//			 Questions for CyberPunk 2077
+			Quiz cyberpunkQuiz = new Quiz(
+					"Cyberpunk 2077 Quiz",
+					videoGameRepository.findByName("Cyberpunk 2077"),
+					userRepository.findByUsername("admin"),
+					Arrays.asList(
+							new Question("Who is the main protagonist in Cyberpunk 2077?", Arrays.asList(
+									new Answer("V", true),
+									new Answer("Johnny Silverhand", false),
+									new Answer("Dexter DeShawn", false)
+							)),
+							new Question("In which city does Cyberpunk 2077 take place?", Arrays.asList(
+									new Answer("Night City", true),
+									new Answer("Los Angeles", false),
+									new Answer("New York", false)
+							))
+					)
+			);
+			quizRepository.save(cyberpunkQuiz);
+
+
+			//Quiz for Outers Wilds
+			Quiz outerWildsQuiz = new Quiz(
+					"Outer Wilds Quiz",
+					videoGameRepository.findByName("Outer Wilds"),
+					userRepository.findByUsername("admin"),
+					Arrays.asList(
+							new Question("What is the central mystery in Outer Wilds?", Arrays.asList(
+									new Answer("The disappearance of the Nomai", true),
+									new Answer("The nature of the Hearthian sun", false),
+									new Answer("The origin of the Interloper", false)
+							)),
+							new Question("Which alien species built the Nomai technology?", Arrays.asList(
+									new Answer("Nomai", true),
+									new Answer("Hearthians", false),
+									new Answer("Anglerfish", false)
+							))
+					)
+			);
+			quizRepository.save(outerWildsQuiz);
+
+
+			// Quiz for Frostpunk
+			Quiz frostpunkQuiz = new Quiz(
+					"Frostpunk Quiz",
+					videoGameRepository.findByName("Frostpunk"),
+					userRepository.findByUsername("admin"),
+					Arrays.asList(
+							new Question("What is the central theme of Frostpunk?", Arrays.asList(
+									new Answer("Survival in a frozen world", true),
+									new Answer("Building advanced technology", false),
+									new Answer("Political intrigue", false)
+							)),
+							new Question("Who is the leader of the city in Frostpunk?", Arrays.asList(
+									new Answer("The Captain", true),
+									new Answer("The Engineer", false),
+									new Answer("The Medic", false)
+							))
+					)
+			);
+			quizRepository.save(frostpunkQuiz);
+
+
 		};
 	}
 }

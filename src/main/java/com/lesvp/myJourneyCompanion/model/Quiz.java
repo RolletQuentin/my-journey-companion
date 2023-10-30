@@ -3,6 +3,7 @@ package com.lesvp.myJourneyCompanion.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,29 +25,19 @@ public class Quiz {
     @JoinColumn(name = "author", referencedColumnName = "uuid")
     private User author;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Question> questions;
+
     public Quiz() {}
 
-
-    public Quiz(String quizTitle) {
-        this.quizTitle = quizTitle;
-    }
-
-    /*
-    public Quiz(String quizTitle, Game uuidGame, User uuidAuthor) {
+    public Quiz(String quizTitle, VideoGame game, User author, List<Question> questions) {
         this.quizTitle = quizTitle;
         this.game = game;
-        this.uuidAuthor = uuidAuthor;
+        this.author = author;
+        this.questions = questions;
     }
 
-     */
-    public Quiz(String quizTitle, User author) {
-        this.quizTitle = quizTitle;
-        this.author = author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
 
 
 }

@@ -11,7 +11,7 @@
     <div class="container red-container big-container">
 
         <h1 th:text="${game.getName()}"></h1>
-        <form>
+        <form id="createForm" method="post" th:action="@{/createQuiz}">
             <div class="title">
                 <label>
                     Title
@@ -30,7 +30,7 @@
                         <div class="response">
                             <label for="response-1-1"> Answer 1</label>
                             <div>
-                                <input type="checkbox">
+                                <input type="checkbox" id="isGoodAnswer-1-1">
                                 <input type="text" name="response" id="response-1-1" class="text-input mid-input">
                                 <button class="deleteResponse button boxed-button" type="button" disabled> X</button>
                             </div>
@@ -39,7 +39,7 @@
                         <div class="response">
                             <label for="response-1-2"> Answer 2</label>
                             <div>
-                                <input type="checkbox">
+                                <input type="checkbox" id="isGoodAnswer-1-2">
                                 <input type="text" name="response" id="response-1-2" class="text-input mid-input">
                                 <button class="deleteResponse button boxed-button" type="button" disabled> X</button>
                             </div>
@@ -51,7 +51,11 @@
                 <button class="addQuestion button boxed-button" type="button"> + Add question</button>
             </div>
 
-            <button type="submit" class="button boxed-button">
+            <input type="hidden" name="jsonQuiz" id="jsonQuiz" />
+            <input type="hidden" name="userUuid" th:value="${user.getUuid()}">
+            <input type="hidden" name="gameUuid" th:value="${game.getUuid()}">
+
+            <button id="submitButton" class="button boxed-button" type="submit">
                 Submit
             </button>
         </form>
@@ -60,5 +64,8 @@
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script src="/js/quiz.js"></script>
+
 </body>
 </html>

@@ -1,6 +1,8 @@
 package com.lesvp.myJourneyCompanion.controller;
 
+import com.lesvp.myJourneyCompanion.model.Quiz;
 import com.lesvp.myJourneyCompanion.model.VideoGame;
+import com.lesvp.myJourneyCompanion.service.QuizService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ public class VideoGameController {
 
     @Autowired
     private VideoGameService videoGameService;
+    @Autowired
+    private QuizService quizService;
 
     @GetMapping("/games/all")
     public String showVideoGames(Model model) {
@@ -48,6 +52,8 @@ public class VideoGameController {
         try {
             VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuid));
             model.addAttribute("game", videoGameData);
+            List<Quiz> quiz = quizService.getQuizByVideoGame(videoGameData);
+            model.addAttribute("quiz", quiz);
         } catch (Throwable e) {
             return "error";
         }

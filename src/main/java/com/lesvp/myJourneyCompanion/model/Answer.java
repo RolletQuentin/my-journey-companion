@@ -15,7 +15,12 @@ public class Answer {
 
     private String answerTitle;
 
-    @ManyToOne
-    @JoinColumn(name = "question", referencedColumnName = "uuid")
-    private Question question;
+    private boolean isCorrect;
+
+    public Answer() {}
+
+    public Answer(String answerTitle, boolean isCorrect) {
+        this.answerTitle = answerTitle;
+        this.isCorrect = isCorrect;
+    }
 }
