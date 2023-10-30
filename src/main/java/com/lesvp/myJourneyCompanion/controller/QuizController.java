@@ -1,10 +1,13 @@
 package com.lesvp.myJourneyCompanion.controller;
 
 import com.lesvp.myJourneyCompanion.model.*;
+import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
 import com.lesvp.myJourneyCompanion.service.QuizService;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,23 +26,36 @@ public class QuizController {
     private QuizService quizService;
     @Autowired
     private VideoGameService videoGameService;
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping("/createQuiz")
-    public String showCreateQuiz(@RequestParam String uuid, Model model) {
-        try {
-            VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuid));
-            model.addAttribute("game", videoGameData);
-        } catch (Throwable e) {
-            return "error";
+    public String showCreateQuiz(@RequestParam String uuid, Model model, Authentication authentication) {
+
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            UUID userUuid = userDetails.getUserUUID();
+
+            try {
+                VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuid));
+                model.addAttribute("game", videoGameData);
+
+                User user = userService.getUser(userUuid);
+                model.addAttribute("user", user);
+
+            } catch (Throwable e) {
+                return "error";
+            }
         }
 
         return "createQuiz";
     }
 
     @PostMapping("/createQuiz")
-    public String createQuiz(Model model) {
-        return "redirect:/";
+    public String createQuiz(@RequestParam String jsonQuiz, @RequestParam String userUuid, @RequestParam String gameUuid) {
+        quizService.createQuiz(jsonQuiz, userUuid, gameUuid);
+        return "redirect:/games?uuid=" + gameUuid;
     }
 
     @GetMapping("/answerQuiz")

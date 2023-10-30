@@ -190,161 +190,106 @@ public class MyJourneyCompanionApplication {
 			));
 
 			//Quiz 1 for Portal
-			Question portalQuestion1 = new Question("What is the main tool used by the player in Portal?");
-			Question portalQuestion2 = new Question("Who is the main antagonist in Portal?");
-			questionRepository.save(portalQuestion1);
-			questionRepository.save(portalQuestion2);
-			List<Question> portalQuestions = Arrays.asList(portalQuestion1,portalQuestion2);
-
-			Answer portalAnswer11 = new Answer("Portal Gun", true);
-			Answer portalAnswer12 = new Answer("Gravity Gun", false);
-			Answer portalAnswer13 = new Answer("Wrench", false);
-			answerRepository.save(portalAnswer11);
-			answerRepository.save(portalAnswer12);
-			answerRepository.save(portalAnswer13);
-			portalQuestions.get(0).setAnswers(Arrays.asList(portalAnswer11,portalAnswer12,portalAnswer13));
-
-			Answer portalAnswer21 = new Answer("GLaDOS", true);
-			Answer portalAnswer22 = new Answer("Chell", false);
-			Answer portalAnswer23 = new Answer("Wheatley", false);
-			answerRepository.save(portalAnswer21);
-			answerRepository.save(portalAnswer22);
-			answerRepository.save(portalAnswer23);
-			portalQuestions.get(1).setAnswers(Arrays.asList(portalAnswer21,portalAnswer22,portalAnswer23));
-
 			Quiz portalQuiz1 = new Quiz(
 					"Portal Quiz",
 					videoGameRepository.findByName("Portal"),
 					userRepository.findByUsername("admin"),
-					portalQuestions
+					Arrays.asList(
+							new Question("What is the main tool used by the player in Portal ?", Arrays.asList(
+									new Answer("Portal Gun", true),
+									new Answer("Gravity Gun", false),
+									new Answer("Wrench", false)
+							)),
+							new Question("Who is the main antagonist in Portal ?", Arrays.asList(
+									new Answer("GLaDOS", true),
+									new Answer("Chell", false),
+									new Answer("Wheatley", false)
+							))
+					)
 			);
 			quizRepository.save(portalQuiz1);
-
-			//Quiz 2 for Portal
-			Question portalQuestion5 = new Question("What is the name of the research company in Portal?");
-			Question portalQuestion6 = new Question("What is the signature color of Portal's portals?");
-			questionRepository.save(portalQuestion5);
-			questionRepository.save(portalQuestion6);
-			List<Question> portalQuestions3 = Arrays.asList(portalQuestion5, portalQuestion6);
-
-			Answer portalAnswer51 = new Answer("Aperture Science", true);
-			Answer portalAnswer52 = new Answer("Black Mesa", false);
-			Answer portalAnswer53 = new Answer("Cyberdyne Systems", false);
-			answerRepository.save(portalAnswer51);
-			answerRepository.save(portalAnswer52);
-			answerRepository.save(portalAnswer53);
-			portalQuestions3.get(0).setAnswers(Arrays.asList(portalAnswer51, portalAnswer52, portalAnswer53));
-
-			Answer portalAnswer61 = new Answer("Blue and Orange", true);
-			Answer portalAnswer62 = new Answer("Green and Red", false);
-			Answer portalAnswer63 = new Answer("Yellow and Purple", false);
-			answerRepository.save(portalAnswer61);
-			answerRepository.save(portalAnswer62);
-			answerRepository.save(portalAnswer63);
-
-			portalQuestions3.get(1).setAnswers(Arrays.asList(portalAnswer61,portalAnswer62,portalAnswer63));
 
 			Quiz portalQuiz2 = new Quiz(
 					"Portal Quiz 2",
 					videoGameRepository.findByName("Portal"),
 					userRepository.findByUsername("admin"),
-					portalQuestions3
-			);
+					Arrays.asList(
+					new Question("What is the name of the research company in Portal?", Arrays.asList(
+							new Answer("Aperture Science", true),
+							new Answer("Black Mesa", false),
+							new Answer("Cyberdyne Systems", false)
+					)),
+					new Question("What is the signature color of Portal's portals?", Arrays.asList(
+							new Answer("Blue and Orange", true),
+							new Answer("Green and Red", false),
+							new Answer("Yellow and Purple", false)
+					))
+			));
 			quizRepository.save(portalQuiz2);
 
 
-			// Questions for CyberPunk 2077
-//			Question cyberpunkQuestion1 = new Question("Who is the main protagonist in Cyberpunk 2077?");
-//			Question cyberpunkQuestion2 = new Question("In which city does Cyberpunk 2077 take place?");
-//			questionRepository.save(cyberpunkQuestion1);
-//			questionRepository.save(cyberpunkQuestion2);
-//			List<Question> cyberpunkQuestions = Arrays.asList(cyberpunkQuestion1, cyberpunkQuestion2);
-//
-//			Answer cyberpunkAnswer11 = new Answer("V", true);
-//			Answer cyberpunkAnswer12 = new Answer("Johnny Silverhand", false);
-//			Answer cyberpunkAnswer13 = new Answer("Dexter DeShawn", false);
-//			answerRepository.save(cyberpunkAnswer11);
-//			answerRepository.save(cyberpunkAnswer12);
-//			answerRepository.save(cyberpunkAnswer13);
-//			cyberpunkQuestions.get(0).setAnswers(Arrays.asList(cyberpunkAnswer11, cyberpunkAnswer12, cyberpunkAnswer13));
-//
-//			Answer cyberpunkAnswer21 = new Answer("Night City", true);
-//			Answer cyberpunkAnswer22 = new Answer("Los Angeles", false);
-//			Answer cyberpunkAnswer23 = new Answer("New York", false);
-//			answerRepository.save(cyberpunkAnswer21);
-//			answerRepository.save(cyberpunkAnswer22);
-//			answerRepository.save(cyberpunkAnswer23);
-//			cyberpunkQuestions.get(1).setAnswers(Arrays.asList(cyberpunkAnswer21, cyberpunkAnswer22, cyberpunkAnswer23));
-//
-//			Quiz cyberpunkQuiz = new Quiz(
-//					"Cyberpunk 2077 Quiz",
-//					videoGameRepository.findByName("Cyberpunk 2077"),
-//					userRepository.findByUsername("admin"),
-//					cyberpunkQuestions
-//			);
-//			quizRepository.save(cyberpunkQuiz);
+//			 Questions for CyberPunk 2077
+			Quiz cyberpunkQuiz = new Quiz(
+					"Cyberpunk 2077 Quiz",
+					videoGameRepository.findByName("Cyberpunk 2077"),
+					userRepository.findByUsername("admin"),
+					Arrays.asList(
+							new Question("Who is the main protagonist in Cyberpunk 2077?", Arrays.asList(
+									new Answer("V", true),
+									new Answer("Johnny Silverhand", false),
+									new Answer("Dexter DeShawn", false)
+							)),
+							new Question("In which city does Cyberpunk 2077 take place?", Arrays.asList(
+									new Answer("Night City", true),
+									new Answer("Los Angeles", false),
+									new Answer("New York", false)
+							))
+					)
+			);
+			quizRepository.save(cyberpunkQuiz);
+
 
 			//Quiz for Outers Wilds
-			Question outerWildsQuestion1 = new Question("What is the central mystery in Outer Wilds?");
-			Question outerWildsQuestion2 = new Question("Which alien species built the Nomai technology?");
-			questionRepository.save(outerWildsQuestion1);
-			questionRepository.save(outerWildsQuestion2);
-			List<Question> outerWildsQuestions = Arrays.asList(outerWildsQuestion1, outerWildsQuestion2);
-
-			Answer outerWildsAnswer11 = new Answer("The disappearance of the Nomai", true);
-			Answer outerWildsAnswer12 = new Answer("The nature of the Hearthian sun", false);
-			Answer outerWildsAnswer13 = new Answer("The origin of the Interloper", false);
-			answerRepository.save(outerWildsAnswer11);
-			answerRepository.save(outerWildsAnswer12);
-			answerRepository.save(outerWildsAnswer13);
-			outerWildsQuestions.get(0).setAnswers(Arrays.asList(outerWildsAnswer11, outerWildsAnswer12, outerWildsAnswer13));
-
-			Answer outerWildsAnswer21 = new Answer("Nomai", true);
-			Answer outerWildsAnswer22 = new Answer("Hearthians", false);
-			Answer outerWildsAnswer23 = new Answer("Anglerfish", false);
-			answerRepository.save(outerWildsAnswer21);
-			answerRepository.save(outerWildsAnswer22);
-			answerRepository.save(outerWildsAnswer23);
-			outerWildsQuestions.get(1).setAnswers(Arrays.asList(outerWildsAnswer21, outerWildsAnswer22, outerWildsAnswer23));
-
 			Quiz outerWildsQuiz = new Quiz(
 					"Outer Wilds Quiz",
 					videoGameRepository.findByName("Outer Wilds"),
 					userRepository.findByUsername("admin"),
-					outerWildsQuestions
+					Arrays.asList(
+							new Question("What is the central mystery in Outer Wilds?", Arrays.asList(
+									new Answer("The disappearance of the Nomai", true),
+									new Answer("The nature of the Hearthian sun", false),
+									new Answer("The origin of the Interloper", false)
+							)),
+							new Question("Which alien species built the Nomai technology?", Arrays.asList(
+									new Answer("Nomai", true),
+									new Answer("Hearthians", false),
+									new Answer("Anglerfish", false)
+							))
+					)
 			);
 			quizRepository.save(outerWildsQuiz);
 
+
 			// Quiz for Frostpunk
-			Question frostpunkQuestion1 = new Question("What is the central theme of Frostpunk?");
-			Question frostpunkQuestion2 = new Question("Who is the leader of the city in Frostpunk?");
-			questionRepository.save(frostpunkQuestion1);
-			questionRepository.save(frostpunkQuestion2);
-			List<Question> frostpunkQuestions = Arrays.asList(frostpunkQuestion1, frostpunkQuestion2);
-
-			Answer frostpunkAnswer11 = new Answer("Survival in a frozen world", true);
-			Answer frostpunkAnswer12 = new Answer("Building advanced technology", false);
-			Answer frostpunkAnswer13 = new Answer("Political intrigue", false);
-			answerRepository.save(frostpunkAnswer11);
-			answerRepository.save(frostpunkAnswer12);
-			answerRepository.save(frostpunkAnswer13);
-			frostpunkQuestions.get(0).setAnswers(Arrays.asList(frostpunkAnswer11, frostpunkAnswer12, frostpunkAnswer13));
-
-			Answer frostpunkAnswer21 = new Answer("The Captain", true);
-			Answer frostpunkAnswer22 = new Answer("The Engineer", false);
-			Answer frostpunkAnswer23 = new Answer("The Medic", false);
-			answerRepository.save(frostpunkAnswer21);
-			answerRepository.save(frostpunkAnswer22);
-			answerRepository.save(frostpunkAnswer23);
-			frostpunkQuestions.get(1).setAnswers(Arrays.asList(frostpunkAnswer21, frostpunkAnswer22, frostpunkAnswer23));
-
 			Quiz frostpunkQuiz = new Quiz(
 					"Frostpunk Quiz",
 					videoGameRepository.findByName("Frostpunk"),
 					userRepository.findByUsername("admin"),
-					frostpunkQuestions
+					Arrays.asList(
+							new Question("What is the central theme of Frostpunk?", Arrays.asList(
+									new Answer("Survival in a frozen world", true),
+									new Answer("Building advanced technology", false),
+									new Answer("Political intrigue", false)
+							)),
+							new Question("Who is the leader of the city in Frostpunk?", Arrays.asList(
+									new Answer("The Captain", true),
+									new Answer("The Engineer", false),
+									new Answer("The Medic", false)
+							))
+					)
 			);
 			quizRepository.save(frostpunkQuiz);
+
 
 		};
 	}

@@ -3,6 +3,7 @@ package com.lesvp.myJourneyCompanion.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,7 +25,8 @@ public class Quiz {
     @JoinColumn(name = "author", referencedColumnName = "uuid")
     private User author;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Question> questions;
 
     public Quiz() {}
@@ -34,11 +36,6 @@ public class Quiz {
         this.game = game;
         this.author = author;
         this.questions = questions;
-        // Mettre à jour les références de chaque réponse à cette question
-        questions.forEach(question -> {
-            question.setQuiz(this);
-            question.getAnswers().forEach(answer -> answer.setQuestion(question));
-        });
     }
 
 

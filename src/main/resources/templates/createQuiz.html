@@ -11,7 +11,7 @@
     <div class="container red-container big-container">
 
         <h1 th:text="${game.getName()}"></h1>
-        <form id="createForm">
+        <form id="createForm" method="post" th:action="@{/createQuiz}">
             <div class="title">
                 <label>
                     Title
@@ -52,8 +52,10 @@
             </div>
 
             <input type="hidden" name="jsonQuiz" id="jsonQuiz" />
+            <input type="hidden" name="userUuid" th:value="${user.getUuid()}">
+            <input type="hidden" name="gameUuid" th:value="${game.getUuid()}">
 
-            <button id="submitButton" class="button boxed-button">
+            <button id="submitButton" class="button boxed-button" type="submit">
                 Submit
             </button>
         </form>
