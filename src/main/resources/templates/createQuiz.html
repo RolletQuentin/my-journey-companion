@@ -11,7 +11,7 @@
     <div class="container red-container big-container">
 
         <h1 th:text="${game.getName()}"></h1>
-        <form th:action="@{/quiz/create}" method="post">
+        <form id="createForm">
             <div class="title">
                 <label>
                     Title
@@ -51,7 +51,9 @@
                 <button class="addQuestion button boxed-button" type="button"> + Add question</button>
             </div>
 
-            <button type="submit" class="button boxed-button">
+            <input type="hidden" name="jsonQuiz" id="jsonQuiz" />
+
+            <button id="submitButton" class="button boxed-button">
                 Submit
             </button>
         </form>
@@ -60,5 +62,8 @@
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script src="/js/quiz.js"></script>
+
 </body>
 </html>

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <button class="deleteResponse button boxed-button" type="button"> X </button>
             </div>
         `;
+        newResponseDiv.addEventListener("input", updateQuiz);
         responsesDiv.insertBefore(newResponseDiv, this);
         updateDeleteResponseButtons();
 
@@ -60,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <button class="addAnswer button boxed-button" type="button"> + Add answers </button>
             </div>
         `;
+        newQuestionDiv.addEventListener("input", updateQuiz);
         questionsDiv.insertBefore(newQuestionDiv, this);
         updateDeleteQuestionButtons();
         updateDeleteResponseButtons();
@@ -180,3 +182,52 @@ document.addEventListener('DOMContentLoaded', function () {
     const addQuestionButton = document.querySelector('.addQuestion');
     addQuestionButton.addEventListener('click', addQuestion);
 });
+
+// On submit. Create a JSON object with all the questions and answers and send it with a fetch
+const form = document.getElementById("createForm");
+
+// add event listener on each input fields
+const inputs = form.querySelectorAll("input");
+inputs.forEach(function (input, index) {
+    input.addEventListener("input", updateQuiz)
+})
+
+function updateQuiz() {
+    const quizTitle = document.querySelector('input[name="quizTitle"]').value;
+    const questions = [];
+
+    // take all the questions div element
+    const questionsElements = document.querySelectorAll(".question");
+    questionsElements.forEach(function (questionElement, index) {
+        const questionTitle = questionElement.querySelector('input[name="question"]').value;
+        const answers = [];
+
+        // take all the answers div element
+        const answerElements = questionElement.querySelectorAll(".response");
+        answerElements.forEach(function(answerElement, subIndex) {
+            const answerText = answerElement.querySelector('input[name="response"]').value;
+            const isGoodAnswer = answerElement.querySelector('input[type="checkbox"]').checked;
+
+            answers.push({
+                title: answerText,
+                isGoodAnswer: isGoodAnswer
+            });
+        });
+
+        questions.push({
+            title: questionTitle,
+            answers: answers
+        });
+    });
+
+    const quizData = {
+        title: quizTitle,
+        questions: questions
+    };
+
+    // convert quizData to String
+    const quizJSON = JSON.stringify(quizData);
+
+    const quizInputElement = document.getElementById("jsonQuiz");
+    quizInputElement.value = quizJSON;
+}

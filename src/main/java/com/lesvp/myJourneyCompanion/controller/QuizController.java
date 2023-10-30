@@ -37,6 +37,11 @@ public class QuizController {
         return "createQuiz";
     }
 
+    @PostMapping("/createQuiz")
+    public String createQuiz(Model model) {
+        return "redirect:/";
+    }
+
     @GetMapping("/answerQuiz")
     public String showAnswerQuiz(@RequestParam String uuidGame, Model model) {
         try {
