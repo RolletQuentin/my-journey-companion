@@ -4,20 +4,20 @@
 <body>
 <header th:replace="~{fragments/header :: header}"></header>
 
-<main class="answer-quiz">
+<main class="quiz answer-quiz">
 
     <div class="big-container container red-container">
         <h1 th:text="${quiz.getGame().getName()}"></h1>
         <h2 th:text="${quiz.getQuizTitle()}"></h2>
-        <form>
+        <form method="post" th:action="@{/submitAnswers}">
             <div class="questions">
                 <div th:each="question, questionIndex : ${quiz.questions}" class="question">
                     <h3 th:text="'Question ' + (${questionIndex.index + 1})" class="question-title"></h3>
                     <div th:text="${question.getQuestionTitle()}" class="question-title"></div>
-                    <div th:each="answer: ${question.answers}" class="answers">
-                        <div class="answer answer-1-1">
-                            <input type="checkbox" name="">
-                            <label th:text="${answer.getAnswerTitle()}" for=""></label>
+                    <div class="responses">
+                        <div th:each="answer, answerIndex: ${question.answers}" class="response">
+                            <input type="checkbox" th:name="'answer' + (${questionIndex.index + 1}) + '-' + (${answerIndex.index + 1})" th:id="'answer' + (${questionIndex.index + 1}) + '-' + (${answerIndex.index + 1})">
+                            <label th:text="${answer.getAnswerTitle()}" th:for="'answer' + (${questionIndex.index + 1}) + '-' + (${answerIndex.index + 1})"></label>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ package com.lesvp.myJourneyCompanion.controller;
 
 import com.lesvp.myJourneyCompanion.model.*;
 import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
+import com.lesvp.myJourneyCompanion.service.AnswerService;
 import com.lesvp.myJourneyCompanion.service.QuizService;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -28,7 +30,8 @@ public class QuizController {
     private VideoGameService videoGameService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private AnswerService answerService;
 
     @GetMapping("/createQuiz")
     public String showCreateQuiz(@RequestParam String uuid, Model model, Authentication authentication) {
@@ -68,24 +71,31 @@ public class QuizController {
         }
         return "answerQuiz";
     }
-/*
-    @PostMapping("/create")
-    public String createQuiz(String quizTitle, List<Question> questions, List<List<Answer>> answers, String authorUuid) {
-        if (quizTitle == null || questions == null || answers == null) {
-            return "Les données sont invalides";
-        }
 
-        Quiz quiz = new Quiz(
-                quizTitle,
-                questions,
-                author,
-        );
-
-        userService.createUser(user);
-
-        return "redirect:/login";
-    }
-
- */
+//    @PostMapping("/submitAnswers")
+//    public String submitAnswers(@RequestParam Map<String, String> formParams) {
+//        int totalPoints = 0;
+//
+//        // Parcourez les paramètres du formulaire
+//        for (Map.Entry<String, String> entry : formParams.entrySet()) {
+//            String paramName = entry.getKey();
+//            String paramValue = entry.getValue();
+//
+//            // Vérifiez si la réponse est correcte
+//            Answer answer = answerService.getAnswer(UUID.fromString(paramValue));
+//            if (answer != null && answer.isCorrect()) {
+//                // Ajoutez les points en fonction de la question
+//                String[] paramParts = paramName.split("-");
+//                if (paramParts.length == 3) {
+//                    int questionNumber = Integer.parseInt(paramParts[1]);
+//                    totalPoints += 1.0 / questionNumber;
+//                }
+//            }
+//        }
+//        // Utilisez totalPoints comme bon vous semble...
+//
+//        // Redirigez vers une page de confirmation ou une autre action après la soumission
+//        return "quizResult";
+//    }
 
 }
