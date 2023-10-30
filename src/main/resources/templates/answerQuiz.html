@@ -5,42 +5,19 @@
 <header th:replace="~{fragments/header :: header}"></header>
 
 <main class="answer-quiz">
-    <h1> Quiz n° <span> 1 </span></h1>
 
     <div class="big-container container red-container">
-        <h1 th:text=""> game name</h1>
+        <h1 th:text="${quiz.getGame().getName()}"></h1>
         <h2 th:text="${quiz.getQuizTitle()}"></h2>
         <form>
             <div class="questions">
-                <div class="question">
-                    <h3> Question 1</h3>
-                    <div class="question-title"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam sem. Etiam quam erat, malesuada a risus gravida, pharetra condimentum odio. Sed sed lectus dapibus dui ullamcorper pharetra ac ac dui.</div>
-                    <div class="answers">
+                <div th:each="question, questionIndex : ${quiz.questions}" class="question">
+                    <h3 th:text="'Question ' + (${questionIndex.index + 1})" class="question-title"></h3>
+                    <div th:text="${question.getQuestionTitle()}" class="question-title"></div>
+                    <div th:each="answer: ${question.answers}" class="answers">
                         <div class="answer answer-1-1">
                             <input type="checkbox" name="">
-                            <label for=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam sem. Etiam quam erat, malesuada a risus gravida.</label>
-                        </div>
-                        <div class="answer answer-1-2">
-                            <input type="checkbox" name="">
-                            <label for=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam sem. Etiam quam erat, malesuada a risus gravida.</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="question">
-                    <h3> Question 2</h3>
-                    <div class="question-title"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam sem. Etiam quam erat, malesuada a risus gravida, pharetra condimentum odio. Sed sed lectus dapibus dui ullamcorper pharetra ac ac dui.</div>
-                    <div class="answers">
-                        <div class="answer answer-2-1">
-                            <input type="checkbox" name="">
-                            <label for=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam sem. Etiam quam erat, malesuada a risus gravida.</label>
-                        </div>
-                        <div class="answer answer-2-2">
-                            <input type="checkbox" name="">
-                            <label for=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam sem. Etiam quam erat, malesuada a risus gravida.</label>
-                        </div>
-                        <div class="answer answer-2-3">
-                            <input type="checkbox" name="">
-                            <label for=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et quam sem. Etiam quam erat, malesuada a risus gravida.</label>
+                            <label th:text="${answer.getAnswerTitle()}" for=""></label>
                         </div>
                     </div>
                 </div>
@@ -48,10 +25,7 @@
 
             <button type="submit" class="boxed-button"> Submit you answers</button>
         </form>
-
-
     </div>
-
 
 </main>
 

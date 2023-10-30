@@ -59,9 +59,9 @@ public class QuizController {
     }
 
     @GetMapping("/answerQuiz")
-    public String showAnswerQuiz(@RequestParam String uuidGame, Model model) {
+    public String showAnswerQuiz(@RequestParam String uuid, Model model) {
         try {
-            Quiz quiz = quizService.getQuiz(UUID.fromString(uuidGame));
+            Quiz quiz = quizService.getQuiz(UUID.fromString(uuid));
             model.addAttribute("quiz", quiz);
         } catch (Throwable e) {
             return "error";

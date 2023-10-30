@@ -32,7 +32,7 @@
             <div class="quiz">
                 <h2>All the quiz about this game</h2>
                 <div class="quiz-list">
-                    <a th:each="quiz: ${quiz}" th:href="'/answer?uuid=' + ${quiz.getUuidQuiz()}" class="quiz-item">
+                    <a th:each="quiz: ${quiz}" th:href="'/answerQuiz?uuid=' + ${quiz.getUuidQuiz()}" class="quiz-item">
                         <h3 th:text="${quiz.getQuizTitle()}"></h3>
                         <span th:text="${quiz.getAuthor().getUsername()}"></span>
                     </a>
