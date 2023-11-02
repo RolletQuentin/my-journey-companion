@@ -16,4 +16,8 @@ public class AnswerService {
     public Answer getAnswer(UUID uuid) {
         return answerRepository.findById(uuid).get();
     }
+
+    public Answer getAnswerByTitle(String answerTitle) {
+        return answerRepository.findByAnswerTitle(answerTitle);
+    }
 }

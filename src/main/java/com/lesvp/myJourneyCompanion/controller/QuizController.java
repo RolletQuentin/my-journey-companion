@@ -72,30 +72,28 @@ public class QuizController {
         return "answerQuiz";
     }
 
-//    @PostMapping("/submitAnswers")
-//    public String submitAnswers(@RequestParam Map<String, String> formParams) {
-//        int totalPoints = 0;
-//
-//        // Parcourez les paramètres du formulaire
-//        for (Map.Entry<String, String> entry : formParams.entrySet()) {
-//            String paramName = entry.getKey();
-//            String paramValue = entry.getValue();
-//
-//            // Vérifiez si la réponse est correcte
-//            Answer answer = answerService.getAnswer(UUID.fromString(paramValue));
-//            if (answer != null && answer.isCorrect()) {
-//                // Ajoutez les points en fonction de la question
-//                String[] paramParts = paramName.split("-");
-//                if (paramParts.length == 3) {
-//                    int questionNumber = Integer.parseInt(paramParts[1]);
-//                    totalPoints += 1.0 / questionNumber;
-//                }
-//            }
-//        }
-//        // Utilisez totalPoints comme bon vous semble...
-//
-//        // Redirigez vers une page de confirmation ou une autre action après la soumission
-//        return "quizResult";
-//    }
+    @PostMapping("/submitAnswers")
+    public String submitAnswers(@RequestParam Map<String, String> formParams, @RequestParam String quizUuid, Model model) {
+        int totalPoints = 0;
 
+        // Parcourez les paramètres du formulaire
+        for (Map.Entry<String, String> entry : formParams.entrySet()) {
+            String paramName = entry.getKey();
+            String paramValue = entry.getValue();
+            if (paramName.equals("quizUuid")){
+                break;
+            }
+
+            // Vérifiez si la réponse est correcte
+            Answer answer = answerService.getAnswerByTitle(paramName);
+            if (answer != null && answer.isCorrect()) {
+                totalPoints += 1;
+            }
+        }
+        model.addAttribute("totalPoints", totalPoints);
+        Quiz quiz = quizService.getQuiz(UUID.fromString(quizUuid));
+        model.addAttribute("quiz", quiz);
+
+        return "quizResult";
+    }
 }

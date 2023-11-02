@@ -16,13 +16,14 @@
                     <div th:text="${question.getQuestionTitle()}" class="question-title"></div>
                     <div class="responses">
                         <div th:each="answer, answerIndex: ${question.answers}" class="response">
-                            <input type="checkbox" th:name="'answer' + (${questionIndex.index + 1}) + '-' + (${answerIndex.index + 1})" th:id="'answer' + (${questionIndex.index + 1}) + '-' + (${answerIndex.index + 1})">
+                            <input type="checkbox" th:name="${answer.getAnswerTitle()}" th:id="'answer' + (${questionIndex.index + 1}) + '-' + (${answerIndex.index + 1})">
                             <label th:text="${answer.getAnswerTitle()}" th:for="'answer' + (${questionIndex.index + 1}) + '-' + (${answerIndex.index + 1})"></label>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <input type="hidden" name="quizUuid" th:value="${quiz.getUuidQuiz()}" />
             <button type="submit" class="boxed-button"> Submit you answers</button>
         </form>
     </div>

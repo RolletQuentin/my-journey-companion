@@ -23,4 +23,8 @@ public class Answer {
         this.answerTitle = answerTitle;
         this.isCorrect = isCorrect;
     }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
 }

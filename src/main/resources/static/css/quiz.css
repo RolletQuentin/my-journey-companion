@@ -3,6 +3,14 @@
     display: flex;
     justify-content: center;
 }
+
+.quiz .form-result {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .quiz .title {
     display: flex;
     flex-direction: column;
@@ -112,3 +120,7 @@ input[type=checkbox]:checked::before {
     }
 }
 
+#exit{
+    display: flex;
+    justify-content: center;
+}

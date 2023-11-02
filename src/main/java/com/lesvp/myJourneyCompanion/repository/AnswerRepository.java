@@ -9,4 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, UUID> {
+    Answer findByAnswerTitle(String answerTitle);
 }
