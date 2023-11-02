@@ -1,14 +1,19 @@
 package com.lesvp.myJourneyCompanion.controller;
 
 import com.lesvp.myJourneyCompanion.model.Quiz;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.model.VideoGame;
+import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
 import com.lesvp.myJourneyCompanion.service.QuizService;
+import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +27,8 @@ public class VideoGameController {
     private VideoGameService videoGameService;
     @Autowired
     private QuizService quizService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/games/all")
     public String showVideoGames(Model model) {
@@ -48,7 +55,15 @@ public class VideoGameController {
     }
 
     @GetMapping("/games")
-    public String showVideoGameDetails(@RequestParam String uuid, Model model) {
+    public String showVideoGameDetails(@RequestParam String uuid, Model model, Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(customUserDetails.getUserUUID());
+            model.addAttribute("user", user);
+        } else {
+            model.addAttribute("user", null);
+        }
+
         try {
             VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuid));
             model.addAttribute("game", videoGameData);
@@ -59,6 +74,57 @@ public class VideoGameController {
         }
 
         return "gameDetails";
+    }
+
+    @GetMapping("/addTodolist")
+    public String addGameToToDoList(@RequestParam String videoGameUUID, Authentication authentication) {
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
+
+            userService.addToToDoList(user, videoGame);
+        }
+
+        return "redirect:/games?uuid=" + videoGameUUID;
+    }
+
+    @GetMapping("/addDonelist")
+    public String addGameToDoneList(@RequestParam String videoGameUUID, Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
+
+            userService.addToDoneList(user, videoGame);
+        }
+
+        return "redirect:/games?uuid=" + videoGameUUID;
+    }
+
+    @GetMapping("/todolist")
+    public String getToDoList(Authentication authentication, Model model) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            List<VideoGame> videoGames = user.getToDoList();
+            model.addAttribute("games", videoGames);
+        }
+
+        return "todolist";
+    }
+
+    @GetMapping("/donelist")
+    public String getDoneList(Authentication authentication, Model model) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            List<VideoGame> videoGames = user.getDoneList();
+            model.addAttribute("games", videoGames);
+        }
+
+        return "donelist";
     }
 
     @GetMapping("/games/topten")
