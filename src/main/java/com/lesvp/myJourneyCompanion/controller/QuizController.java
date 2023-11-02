@@ -75,6 +75,7 @@ public class QuizController {
     @PostMapping("/submitAnswers")
     public String submitAnswers(@RequestParam Map<String, String> formParams, @RequestParam String quizUuid, Model model) {
         int totalPoints = 0;
+        List<String> userSelectedAnswers = new ArrayList<>();
 
         // Parcourez les paramètres du formulaire
         for (Map.Entry<String, String> entry : formParams.entrySet()) {
@@ -83,6 +84,7 @@ public class QuizController {
             if (paramName.equals("quizUuid")){
                 break;
             }
+            userSelectedAnswers.add(paramName);
 
             // Vérifiez si la réponse est correcte
             Answer answer = answerService.getAnswerByTitle(paramName);
@@ -93,6 +95,7 @@ public class QuizController {
         model.addAttribute("totalPoints", totalPoints);
         Quiz quiz = quizService.getQuiz(UUID.fromString(quizUuid));
         model.addAttribute("quiz", quiz);
+        model.addAttribute("userSelectedAnswers", userSelectedAnswers);
 
         return "quizResult";
     }

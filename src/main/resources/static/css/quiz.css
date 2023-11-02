@@ -28,7 +28,7 @@
     margin: 10px 0;
     width:100%;
     .question{
-        margin: 10px 0;
+        margin: 20px 0;
         width: 100%;
         & > div{
             display: flex;
@@ -118,6 +118,14 @@ input[type=checkbox]:checked::before {
     label{
         margin-left: 7px;
     }
+}
+
+.tick{
+    margin-left: 15px;
+}
+
+.good-answer{
+    margin-top: 15px;
 }
 
 #exit{
