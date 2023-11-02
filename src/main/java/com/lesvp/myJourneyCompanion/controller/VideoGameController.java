@@ -56,7 +56,7 @@ public class VideoGameController {
 
     @GetMapping("/games")
     public String showVideoGameDetails(@RequestParam String uuid, Model model, Authentication authentication) {
-        if (authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated()) {
             CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
             User user = userService.getUser(customUserDetails.getUserUUID());
             model.addAttribute("user", user);
@@ -76,22 +76,55 @@ public class VideoGameController {
         return "gameDetails";
     }
 
-    @PostMapping("/games/todolist")
-    public String addGameToToDoList(@RequestParam String userUUID, @RequestParam String videoGameUUID) {
-        User user = userService.getUser(UUID.fromString(userUUID));
-        VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
+    @GetMapping("/addTodolist")
+    public String addGameToToDoList(@RequestParam String videoGameUUID, Authentication authentication) {
 
-        userService.addToToDoList(user, videoGame);
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
+
+            userService.addToToDoList(user, videoGame);
+        }
+
         return "redirect:/games?uuid=" + videoGameUUID;
     }
 
-    @PostMapping("/games/donelist")
-    public String addGameToDoneList(@RequestParam String userUUID, @RequestParam String videoGameUUID) {
-        User user = userService.getUser(UUID.fromString(userUUID));
-        VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
+    @GetMapping("/addDonelist")
+    public String addGameToDoneList(@RequestParam String videoGameUUID, Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
 
-        userService.addToDoneList(user, videoGame);
+            userService.addToDoneList(user, videoGame);
+        }
+
         return "redirect:/games?uuid=" + videoGameUUID;
+    }
+
+    @GetMapping("/todolist")
+    public String getToDoList(Authentication authentication, Model model) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            List<VideoGame> videoGames = user.getToDoList();
+            model.addAttribute("games", videoGames);
+        }
+
+        return "todolist";
+    }
+
+    @GetMapping("/donelist")
+    public String getDoneList(Authentication authentication, Model model) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(userDetails.getUserUUID());
+            List<VideoGame> videoGames = user.getDoneList();
+            model.addAttribute("games", videoGames);
+        }
+
+        return "donelist";
     }
 
     @GetMapping("/games/topten")

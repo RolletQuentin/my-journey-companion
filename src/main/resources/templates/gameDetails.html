@@ -42,10 +42,10 @@
         </div>
         <div class="score" th:text="${game.getMark()}"></div>
         <div class="check">
-            <div class="checkbox"></div>
+            <a th:href="'/addDonelist?videoGameUUID=' + ${game.getUuid()}" class="checkbox"></a>
         </div>
         <div class="save">
-            <div class="save-icon"></div>
+            <a th:href="'/addTodolist?videoGameUUID=' + ${game.getUuid()}" class="save-icon"></a>
         </div>
     </div>
 </main>
