@@ -72,21 +72,33 @@ public class UserService {
     }
 
     // add video game to todolist. If the video game is in the done list, remove it to put it in the to do list
+    // if the video game is already in the todolist, remove it
     public void addToToDoList(User user, VideoGame videoGame) {
         // remove the video game from the done list if exists
         user.getDoneList().remove(videoGame);
 
-        // add the video game to todolist
-        user.getToDoList().add(videoGame);
+        if (user.getToDoList().contains(videoGame)) {
+            user.getToDoList().remove(videoGame);
+        } else {
+            // add the video game to todolist
+            user.getToDoList().add(videoGame);
+        }
 
         // save the modifications
         userRepository.save(user);
     }
 
     // add video game to donelist. If the video game is in the todolist, remove it to put in the todolist
+    // if the video game is already in the donelist, remove it
     public void addToDoneList(User user, VideoGame videoGame) {
         user.getToDoList().remove(videoGame);
-        user.getDoneList().add(videoGame);
+
+        if (user.getDoneList().contains(videoGame)) {
+            user.getDoneList().remove(videoGame);
+        } else {
+            user.getDoneList().add(videoGame);
+        }
+
         userRepository.save(user);
     }
 }

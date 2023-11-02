@@ -4,8 +4,22 @@
 <body>
 <header th:replace="~{fragments/header :: header}"></header>
 
-<main>
-    <h1>ToDoList</h1>
+<main class="games">
+    <h1>My To Do List</h1>
+
+    <div class="game-list">
+        <div class="filter">
+            <span>Sort by : name</span>
+        </div>
+        <div class="grid">
+            <a th:each="game: ${games}" th:href="'/games?uuid=' + ${game.getUuid()}" class="game-card">
+                <div class="img-container">
+                    <img th:src="${game.getUrlCover()}" th:alt="${game.getName()} + 'Game image'"/>
+                </div>
+                <span th:text="${game.getName()}"></span>
+            </a>
+        </div>
+    </div>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
