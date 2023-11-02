@@ -37,7 +37,4 @@ public class Quiz {
         this.author = author;
         this.questions = questions;
     }
-
-
-
 }

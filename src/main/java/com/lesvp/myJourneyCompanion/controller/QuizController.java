@@ -2,6 +2,7 @@ package com.lesvp.myJourneyCompanion.controller;
 
 import com.lesvp.myJourneyCompanion.model.*;
 import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
+import com.lesvp.myJourneyCompanion.service.AnswerService;
 import com.lesvp.myJourneyCompanion.service.QuizService;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -28,7 +30,8 @@ public class QuizController {
     private VideoGameService videoGameService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private AnswerService answerService;
 
     @GetMapping("/createQuiz")
     public String showCreateQuiz(@RequestParam String uuid, Model model, Authentication authentication) {
@@ -59,33 +62,41 @@ public class QuizController {
     }
 
     @GetMapping("/answerQuiz")
-    public String showAnswerQuiz(@RequestParam String uuidGame, Model model) {
+    public String showAnswerQuiz(@RequestParam String uuid, Model model) {
         try {
-            Quiz quiz = quizService.getQuiz(UUID.fromString(uuidGame));
+            Quiz quiz = quizService.getQuiz(UUID.fromString(uuid));
             model.addAttribute("quiz", quiz);
         } catch (Throwable e) {
             return "error";
         }
         return "answerQuiz";
     }
-/*
-    @PostMapping("/create")
-    public String createQuiz(String quizTitle, List<Question> questions, List<List<Answer>> answers, String authorUuid) {
-        if (quizTitle == null || questions == null || answers == null) {
-            return "Les données sont invalides";
+
+    @PostMapping("/submitAnswers")
+    public String submitAnswers(@RequestParam Map<String, String> formParams, @RequestParam String quizUuid, Model model) {
+        int totalPoints = 0;
+        List<String> userSelectedAnswers = new ArrayList<>();
+
+        // Parcourez les paramètres du formulaire
+        for (Map.Entry<String, String> entry : formParams.entrySet()) {
+            String paramName = entry.getKey();
+            String paramValue = entry.getValue();
+            if (paramName.equals("quizUuid")){
+                break;
+            }
+            userSelectedAnswers.add(paramName);
+
+            // Vérifiez si la réponse est correcte
+            Answer answer = answerService.getAnswerByTitle(paramName);
+            if (answer != null && answer.isCorrect()) {
+                totalPoints += 1;
+            }
         }
+        model.addAttribute("totalPoints", totalPoints);
+        Quiz quiz = quizService.getQuiz(UUID.fromString(quizUuid));
+        model.addAttribute("quiz", quiz);
+        model.addAttribute("userSelectedAnswers", userSelectedAnswers);
 
-        Quiz quiz = new Quiz(
-                quizTitle,
-                questions,
-                author,
-        );
-
-        userService.createUser(user);
-
-        return "redirect:/login";
+        return "quizResult";
     }
-
- */
-
 }
