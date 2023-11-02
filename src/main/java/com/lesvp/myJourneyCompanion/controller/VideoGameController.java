@@ -1,14 +1,19 @@
 package com.lesvp.myJourneyCompanion.controller;
 
 import com.lesvp.myJourneyCompanion.model.Quiz;
+import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.model.VideoGame;
+import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
 import com.lesvp.myJourneyCompanion.service.QuizService;
+import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +27,8 @@ public class VideoGameController {
     private VideoGameService videoGameService;
     @Autowired
     private QuizService quizService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/games/all")
     public String showVideoGames(Model model) {
@@ -48,7 +55,15 @@ public class VideoGameController {
     }
 
     @GetMapping("/games")
-    public String showVideoGameDetails(@RequestParam String uuid, Model model) {
+    public String showVideoGameDetails(@RequestParam String uuid, Model model, Authentication authentication) {
+        if (authentication.isAuthenticated()) {
+            CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+            User user = userService.getUser(customUserDetails.getUserUUID());
+            model.addAttribute("user", user);
+        } else {
+            model.addAttribute("user", null);
+        }
+
         try {
             VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuid));
             model.addAttribute("game", videoGameData);
@@ -59,6 +74,24 @@ public class VideoGameController {
         }
 
         return "gameDetails";
+    }
+
+    @PostMapping("/games/todolist")
+    public String addGameToToDoList(@RequestParam String userUUID, @RequestParam String videoGameUUID) {
+        User user = userService.getUser(UUID.fromString(userUUID));
+        VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
+
+        userService.addToToDoList(user, videoGame);
+        return "redirect:/games?uuid=" + videoGameUUID;
+    }
+
+    @PostMapping("/games/donelist")
+    public String addGameToDoneList(@RequestParam String userUUID, @RequestParam String videoGameUUID) {
+        User user = userService.getUser(UUID.fromString(userUUID));
+        VideoGame videoGame = videoGameService.getVideoGame(UUID.fromString(videoGameUUID));
+
+        userService.addToDoneList(user, videoGame);
+        return "redirect:/games?uuid=" + videoGameUUID;
     }
 
     @GetMapping("/games/topten")

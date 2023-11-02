@@ -1,6 +1,7 @@
 package com.lesvp.myJourneyCompanion.service;
 
 import com.lesvp.myJourneyCompanion.model.User;
+import com.lesvp.myJourneyCompanion.model.VideoGame;
 import com.lesvp.myJourneyCompanion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -68,5 +69,24 @@ public class UserService {
     public static boolean matchPasswords(User user, String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder.matches(password, user.getHashed_password());
+    }
+
+    // add video game to todolist. If the video game is in the done list, remove it to put it in the to do list
+    public void addToToDoList(User user, VideoGame videoGame) {
+        // remove the video game from the done list if exists
+        user.getDoneList().remove(videoGame);
+
+        // add the video game to todolist
+        user.getToDoList().add(videoGame);
+
+        // save the modifications
+        userRepository.save(user);
+    }
+
+    // add video game to donelist. If the video game is in the todolist, remove it to put in the todolist
+    public void addToDoneList(User user, VideoGame videoGame) {
+        user.getToDoList().remove(videoGame);
+        user.getDoneList().add(videoGame);
+        userRepository.save(user);
     }
 }
