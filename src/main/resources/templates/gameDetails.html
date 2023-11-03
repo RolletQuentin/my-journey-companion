@@ -6,7 +6,7 @@
 
 <main class="game-details">
     <div class="hero-banner">
-        <img th:src="${game.getUrlCover()}" th:alt="${game.getName()} + 'game image'" />
+        <img th:src="${game.getUrlCover()}" th:alt="${game.getName()} + 'game image'"/>
         <span th:text="${game.getName()}"></span>
     </div>
     <div class="details">
@@ -16,7 +16,8 @@
                     <div class="studio-date">
                         <span class="studio" th:text="${game.getStudio()}"></span>
                         <span> - </span>
-                        <span class="released-date" th:text="${game.getReleaseDate().getMonth()+1 + ' ' + game.getReleaseDate().getDate() + ', ' + game.getReleaseDate().getYear()}"></span>
+                        <span class="released-date"
+                              th:text="${game.getReleaseDate().getMonth()+1 + ' ' + game.getReleaseDate().getDate() + ', ' + game.getReleaseDate().getYear()}"></span>
                     </div>
                     <div class="stars">
                         <div class="star"></div>
@@ -32,10 +33,18 @@
             <div class="quiz">
                 <h2>All the quiz about this game</h2>
                 <div class="quiz-list">
-                    <a th:each="quiz: ${quiz}" th:href="'/answerQuiz?uuid=' + ${quiz.getUuidQuiz()}" class="quiz-item">
-                        <h3 th:text="${quiz.getQuizTitle()}"></h3>
-                        <span th:text="${quiz.getAuthor().getUsername()}"></span>
-                    </a>
+                    <div th:each="quiz: ${quiz}">
+                        <a th:href="'/answerQuiz?uuid=' + ${quiz.getUuidQuiz()}" class="quiz-item">
+                            <h3 th:text="${quiz.getQuizTitle()}"></h3>
+                            <span th:text="${quiz.getAuthor().getUsername()}"></span>
+                        </a>
+                        <div th:if="${quiz.getAuthor().getUsername()} == ${#authentication.getName()}">
+                            <a th:href="'/deleteQuiz?uuidQuiz=' + ${quiz.getUuidQuiz()}"
+                               class="boxed-button">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <a th:href="'/createQuiz?uuid=' + ${game.getUuid()}" class="button boxed-button">Create a new quiz</a>
             </div>
@@ -43,13 +52,15 @@
         <div class="score" th:text="${game.getMark()}"></div>
         <div class="check">
             <a th:href="'/addDonelist?videoGameUUID=' + ${game.getUuid()}">
-                <img th:src="${user == null || !user.getDoneList().contains(game) ? 'https://img.icons8.com/ios-filled/50/000000/unchecked-checkbox.png' : 'https://img.icons8.com/ios-filled/50/checked-checkbox.png'}" alt="checkbox"/>
+                <img th:src="${user == null || !user.getDoneList().contains(game) ? 'https://img.icons8.com/ios-filled/50/000000/unchecked-checkbox.png' : 'https://img.icons8.com/ios-filled/50/checked-checkbox.png'}"
+                     alt="checkbox"/>
             </a>
         </div>
 
         <div class="save">
             <a th:href="'/addTodolist?videoGameUUID=' + ${game.getUuid()}" class="save-icon">
-                <img th:src="${user == null || !user.getToDoList().contains(game)} ? 'https://img.icons8.com/ios/50/000000/bookmark-ribbon--v1.png' : 'https://img.icons8.com/ios-filled/50/000000/bookmark-ribbon.png'" alt="bookmark"/>
+                <img th:src="${user == null || !user.getToDoList().contains(game)} ? 'https://img.icons8.com/ios/50/000000/bookmark-ribbon--v1.png' : 'https://img.icons8.com/ios-filled/50/000000/bookmark-ribbon.png'"
+                     alt="bookmark"/>
             </a>
         </div>
     </div>

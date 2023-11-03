@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,7 +78,6 @@ public class QuizController {
         int totalPoints = 0;
         List<String> userSelectedAnswers = new ArrayList<>();
 
-        // Parcourez les paramètres du formulaire
         for (Map.Entry<String, String> entry : formParams.entrySet()) {
             String paramName = entry.getKey();
             String paramValue = entry.getValue();
@@ -86,7 +86,6 @@ public class QuizController {
             }
             userSelectedAnswers.add(paramName);
 
-            // Vérifiez si la réponse est correcte
             Answer answer = answerService.getAnswerByTitle(paramName);
             if (answer != null && answer.isCorrect()) {
                 totalPoints += 1;
@@ -98,5 +97,12 @@ public class QuizController {
         model.addAttribute("userSelectedAnswers", userSelectedAnswers);
 
         return "quizResult";
+    }
+
+    @GetMapping("/deleteQuiz")
+    public String submitAnswers(@RequestParam String uuidQuiz) {
+        UUID uuidGame = quizService.getVideoGameUuidByQuizUuid(UUID.fromString(uuidQuiz));
+        quizService.deleteQuizByUuid(UUID.fromString(uuidQuiz));
+        return "redirect:/games?uuid=" + uuidGame;
     }
 }
