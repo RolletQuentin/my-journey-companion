@@ -26,7 +26,7 @@ public class MarkService {
     private VideoGameRepository videoGameRepository;
 
 
-    public Mark createMark(double givenMark, UUID uuidVideoGame, UUID uuidAuthor){
+    public Mark createMark(double givenMark, UUID uuidVideoGame, UUID uuidAuthor) {
         Mark mark = new Mark(givenMark);
 
         var videoGame = videoGameRepository.findById(uuidVideoGame);
@@ -40,22 +40,52 @@ public class MarkService {
         } else {
             return null; // Handle case where game or author with provided UUIDs doesn't exist
         }
-
-
     }
 
-    public double averageMark(UUID uuidVideoGame){
+    public boolean isExist(UUID uuidVideoGame, UUID uuidAuthor) {
+        var videoGame = videoGameRepository.findById(uuidVideoGame);
+        var author = userRepository.findById(uuidAuthor);
+
+        boolean isExist = false;
+
+        if (author.isPresent() && videoGame.isPresent()) {
+
+            List<Mark> liste = markRepository.getMarksByLinkedVideoGame(videoGame.get());
+
+            for (Mark element : liste) {
+                if (element.getLinkedUser().equals(author.get())) {
+                    isExist = true;
+                }
+            }
+            return isExist;
+        } else {
+            return false;
+        }
+    }
+
+    public Mark getMark(UUID uuidVideoGame, UUID uuidAuthor) {
+        var videoGame = videoGameRepository.findById(uuidVideoGame);
+        var author = userRepository.findById(uuidAuthor);
+        if (author.isPresent() && videoGame.isPresent()) {
+            Mark actualMark = markRepository.getMarkByLinkedUserAndLinkedVideoGame(author.get(), videoGame.get());
+            return actualMark;
+        } else {
+            return null;
+        }
+    }
+
+    public double averageMark(UUID uuidVideoGame) {
         var videoGame = videoGameRepository.findById(uuidVideoGame);
 
-        if (videoGame.isPresent()){
+        if (videoGame.isPresent()) {
 
             double average = 0;
 
             List<Mark> allMarks = markRepository.getMarksByLinkedVideoGame(videoGame.get());
             for (int i = 0; i < allMarks.size(); i++) {
-                average = average + (allMarks.get(i).getMark())*100/5;
+                average = average + (allMarks.get(i).getMark()) * 100 / 5;
             }
-            average = average/allMarks.size();
+            average = average / allMarks.size();
 
             return average;
         } else {

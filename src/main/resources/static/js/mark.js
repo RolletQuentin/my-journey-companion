@@ -1,5 +1,5 @@
 const stars = document.querySelectorAll('.half-star-left, .half-star-right');
-const markInput = document.querySelector('input[name="mark"]');
+const markInput = document.querySelector('input[name="givenMark"]');
 const ratingForm = document.getElementById('rating-form');
 
 stars.forEach((star, index) => {

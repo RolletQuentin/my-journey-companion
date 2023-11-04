@@ -19,7 +19,7 @@
                         <span class="released-date"
                               th:text="${game.getReleaseDate().getMonth()+1 + ' ' + game.getReleaseDate().getDate() + ', ' + game.getReleaseDate().getYear()}"></span>
                     </div>
-                    <form id="rating-form" method="post" action="">
+                    <form id="rating-form" method="post" th:action="@{games/createMark}">
                         <div class="stars">
                             <div class="half-star-left" data-rating="0.5"></div>
                             <div class="half-star-right" data-rating="1"></div>
@@ -35,9 +35,11 @@
 <!--                            <div class="star" data-rating="3"></div>-->
 <!--                            <div class="star" data-rating="4"></div>-->
 <!--                            <div class="star" data-rating="5"></div>-->
-                            <input name="uuidVideoGame" type="hidden" value="">
-                            <input name="uuidUser" type="hidden" value="">
-                            <input name="mark" type="hidden" value="0">
+                            <input name="uuidVideoGame" type="hidden" th:value="${game.getUuid()}">
+                                <input sec:authorize="!isAuthenticated()" name="uuidAuthor" type="hidden" value="none">
+                                <input sec:authorize="isAuthenticated()" name="uuidAuthor" type="hidden" th:value="${user.getUuid()}">
+
+                            <input name="givenMark" type="hidden" value="0">
                         </div>
                     </form>
                     <script>

@@ -4,6 +4,7 @@ package com.lesvp.myJourneyCompanion.model;
 import com.lesvp.myJourneyCompanion.controller.VideoGameController;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.UUID;
 
@@ -21,7 +22,8 @@ public class Mark {
     @JoinColumn(name = "linkedVideoGame", referencedColumnName = "uuid")
     private VideoGame linkedVideoGame;
 
-    @OneToOne
+    @Getter
+    @ManyToOne
     @JoinColumn(name = "linkedUser", referencedColumnName = "uuid")
     private User linkedUser;
 
