@@ -212,7 +212,7 @@ public class MyJourneyCompanionApplication {
 			Quiz portalQuiz2 = new Quiz(
 					"Portal Quiz 2",
 					videoGameRepository.findByName("Portal"),
-					userRepository.findByUsername("admin"),
+					userRepository.findByUsername("user"),
 					Arrays.asList(
 					new Question("What is the name of the research company in Portal?", Arrays.asList(
 							new Answer("Aperture Science", true),

@@ -29,11 +29,27 @@ public class QuizService {
     @Autowired
     private VideoGameService videoGameService;
 
+    public Quiz getQuiz(UUID uuid) {
+        return quizRepository.findById(uuid).get();
+    }
+
     public List<Quiz> getQuizByVideoGame(VideoGame game) {
         return quizRepository.findByGame(game);
     }
-    public Quiz getQuiz(UUID uuid) {
-        return quizRepository.findById(uuid).get();
+
+    public UUID getVideoGameUuidByQuizUuid(UUID quizUuid) {
+        Quiz quiz = getQuiz(quizUuid);
+        if (quiz != null) {
+            VideoGame videoGame = quiz.getGame();
+            if (videoGame != null) {
+                return videoGame.getUuid();
+            }
+        }
+        return null;
+    }
+
+    public void deleteQuizByUuid(UUID uuid) {
+        quizRepository.deleteById(uuid);
     }
 
     public Quiz createQuiz(String jsonQuiz, String userUuid, String gameUuid) {
