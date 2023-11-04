@@ -21,8 +21,8 @@ create database db_my_journey_companion;
 ### Set up your variables environment
 
 You have two variables to set :
-- DATABASE_USERNAME
-- DATABASE_PASSWORD
+- DATABASE_USERNAME=yourMySqlUsername
+- DATABASE_PASSWORD=yourMySqlPassword
 
 ### Login to the website
 
