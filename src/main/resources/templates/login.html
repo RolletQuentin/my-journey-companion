@@ -5,9 +5,14 @@
 <header th:replace="~{fragments/header :: header}"></header>
 
 <main>
-    <div class="title">
-        Sign In to My Journey Companion
-    </div>
+<!--    <div class="title">-->
+<!--        Sign In to My Journey Companion-->
+<!--    </div>-->
+
+    <h1>
+        Sign In to <span class="orangeStyle"> My Journey Companion </span>
+    </h1>
+
 
     <div>
         <div th:if="${param.error}">
@@ -26,12 +31,11 @@
                     <input type="text" name="username" id="username-in" class="text-input small-input"/>
                 </div>
                 <div class="in-container">
-                    <div>
                         <label for="password-in">
                             Password :
                         </label>
-                        <div><a> Forgot Password ? </a></div>
-                    </div>
+<!--                        <div><a> Forgot Password ? </a></div>-->
+
                     <input type="password" name="password" id="password-in" class="text-input small-input"/>
                 </div>
                 <div>
@@ -39,11 +43,8 @@
                 </div>
             </form>
             <div>
-                <div>
-                    Not registered ?
-                </div>
-                <div>
-                    <a class="sign">Sign up</a>
+                <div class="notRegisteredOrAlreadyRegistered">
+                    Not registered ? <a class="button" href="signup">Sign up</a>
                 </div>
             </div>
         </div>
