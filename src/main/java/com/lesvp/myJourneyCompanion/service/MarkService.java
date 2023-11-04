@@ -10,6 +10,7 @@ import com.lesvp.myJourneyCompanion.repository.VideoGameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -41,5 +42,24 @@ public class MarkService {
         }
 
 
+    }
+
+    public double averageMark(UUID uuidVideoGame){
+        var videoGame = videoGameRepository.findById(uuidVideoGame);
+
+        if (videoGame.isPresent()){
+
+            double average = 0;
+
+            List<Mark> allMarks = markRepository.getMarksByLinkedVideoGame(videoGame.get());
+            for (int i = 0; i < allMarks.size(); i++) {
+                average = average + (allMarks.get(i).getMark())*100/5;
+            }
+            average = average/allMarks.size();
+
+            return average;
+        } else {
+            return -1;
+        }
     }
 }

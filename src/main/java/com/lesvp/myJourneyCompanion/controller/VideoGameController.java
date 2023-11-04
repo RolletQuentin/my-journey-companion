@@ -1,7 +1,9 @@
 package com.lesvp.myJourneyCompanion.controller;
 
+import com.lesvp.myJourneyCompanion.model.Mark;
 import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.model.VideoGame;
+import com.lesvp.myJourneyCompanion.service.MarkService;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-public class    VideoGameController {
+public class VideoGameController {
 
+    @Autowired
+    private MarkService markService;
     @Autowired
     private VideoGameService videoGameService;
 
@@ -72,17 +76,19 @@ public class    VideoGameController {
     }
 
     @PostMapping("/createMark")
-    public String showCreateMark(@RequestParam String uuidVideoGame, String uuidAuthor, double givenMark, Model model) {
+    public String CreateMark(@RequestParam String uuidVideoGame, String uuidAuthor, double givenMark) {
 
         try {
-            VideoGame videoGameData = videoGameService.getVideoGame(UUID.fromString(uuidVideoGame));
-            User user = userService.getUser(UUID.fromString(uuidAuthor));
+            Mark newMark = markService.createMark(givenMark, UUID.fromString(uuidVideoGame), UUID.fromString(uuidAuthor));
+            double average = markService.averageMark(UUID.fromString(uuidVideoGame));
+            videoGameService.update(UUID.fromString(uuidVideoGame), (int) average);
 
-            model.addAttribute("game", videoGameData);
         } catch (Throwable e) {
             return "error";
         }
 
-        return "createMark";
+        return "redirect:/games?uuid="+uuidVideoGame;
     }
+
+
 }
