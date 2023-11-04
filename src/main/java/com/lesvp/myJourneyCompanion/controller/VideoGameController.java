@@ -9,25 +9,13 @@ import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import com.lesvp.myJourneyCompanion.model.Quiz;
-import com.lesvp.myJourneyCompanion.model.User;
-import com.lesvp.myJourneyCompanion.model.VideoGame;
-import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
 import com.lesvp.myJourneyCompanion.service.QuizService;
-import com.lesvp.myJourneyCompanion.service.UserService;
-import com.lesvp.myJourneyCompanion.service.VideoGameService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.net.Authenticator;
 import java.util.List;
 import java.util.UUID;
 
@@ -40,9 +28,6 @@ public class VideoGameController {
     private VideoGameService videoGameService;
     @Autowired
     private QuizService quizService;
-    @Autowired
-    private UserService userService;
-
     @Autowired
     private UserService userService;
 
