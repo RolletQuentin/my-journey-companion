@@ -1,13 +1,15 @@
-# My Journey Companion
+# My Journey Companion - JEE Project
 
 ## Configuration
+
+The project uses Java 21
 
 ### Create the database
 
 You have to connect to MySQL and create the database.
 
 First, access the MySQL console :
-```
+```bash
 mysql -u username -p
 ```
 
@@ -22,4 +24,6 @@ You have two variables to set :
 - DATABASE_USERNAME
 - DATABASE_PASSWORD
 
+### Login to the website
 
+Log on to http://localhost:8080 on a browser
