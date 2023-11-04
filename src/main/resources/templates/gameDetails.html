@@ -6,7 +6,7 @@
 
 <main class="game-details">
     <div class="hero-banner">
-        <img th:src="${game.getUrlCover()}" th:alt="${game.getName()} + 'game image'" />
+        <img th:src="${game.getUrlCover()}" th:alt="${game.getName()} + 'game image'"/>
         <span th:text="${game.getName()}"></span>
     </div>
     <div class="details">
@@ -16,15 +16,50 @@
                     <div class="studio-date">
                         <span class="studio" th:text="${game.getStudio()}"></span>
                         <span> - </span>
-                        <span class="released-date" th:text="${game.getReleaseDate().getMonth()+1 + ' ' + game.getReleaseDate().getDate() + ', ' + game.getReleaseDate().getYear()}"></span>
+                        <span class="released-date"
+                              th:text="${game.getReleaseDate().getMonth()+1 + ' ' + game.getReleaseDate().getDate() + ', ' + game.getReleaseDate().getYear()}"></span>
                     </div>
-                    <div class="stars">
-                        <div class="star"></div>
-                        <div class="star"></div>
-                        <div class="star"></div>
-                        <div class="star"></div>
-                        <div class="star"></div>
-                    </div>
+                    <form id="rating-form" method="post" th:action="@{games/createMark}">
+                        <div class="stars">
+                            <div class="half-star-left" data-rating="0.5"></div>
+                            <div class="half-star-right" data-rating="1"></div>
+                            <div class="half-star-left" data-rating="1.5"></div>
+                            <div class="half-star-right" data-rating="2"></div>
+                            <div class="half-star-left" data-rating="2.5"></div>
+                            <div class="half-star-right" data-rating="3"></div>
+                            <div class="half-star-left" data-rating="3.5"></div>
+                            <div class="half-star-right" data-rating="4"></div>
+                            <div class="half-star-left" data-rating="4.5"></div>
+                            <div class="half-star-right" data-rating="5"></div>
+<!--                            <div class="star" data-rating="2"></div>-->
+<!--                            <div class="star" data-rating="3"></div>-->
+<!--                            <div class="star" data-rating="4"></div>-->
+<!--                            <div class="star" data-rating="5"></div>-->
+                            <input name="uuidVideoGame" type="hidden" th:value="${game.getUuid()}">
+                                <input sec:authorize="!isAuthenticated()" name="uuidAuthor" type="hidden" value="none">
+                                <input sec:authorize="isAuthenticated()" name="uuidAuthor" type="hidden" th:value="${user.getUuid()}">
+
+                            <input name="givenMark" type="hidden" value="0">
+                        </div>
+                    </form>
+                    <script>
+                        // const stars = document.querySelectorAll('.star');
+                        // const markInput = document.querySelector('input[name="mark"]');
+                        //
+                        // stars.forEach(star => {
+                        //     star.addEventListener('mouseenter', () => {
+                        //         const rating = star.getAttribute('data-rating');
+                        //         markInput.value = rating;
+                        //         // Vous pouvez également ajouter du code pour mettre en surbrillance les étoiles au survol si vous le souhaitez.
+                        //     });
+                        //
+                        //     star.addEventListener('click', () => {
+                        //         // Remettre à zéro la valeur de l'input lorsque la souris quitte les étoiles.
+                        //         console.log(markInput.value)
+                        //     });
+                        // });
+                    </script>
+
                 </div>
                 <p class="description" th:text="${game.getDescription()}"></p>
             </div>
