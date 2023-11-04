@@ -1,28 +1,29 @@
 package com.lesvp.myJourneyCompanion.controller;
 
-import com.lesvp.myJourneyCompanion.model.Quiz;
+import com.lesvp.myJourneyCompanion.model.Mark;
 import com.lesvp.myJourneyCompanion.model.User;
 import com.lesvp.myJourneyCompanion.model.VideoGame;
 import com.lesvp.myJourneyCompanion.security.CustomUserDetails;
-import com.lesvp.myJourneyCompanion.service.QuizService;
+import com.lesvp.myJourneyCompanion.service.MarkService;
 import com.lesvp.myJourneyCompanion.service.UserService;
 import com.lesvp.myJourneyCompanion.service.VideoGameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import com.lesvp.myJourneyCompanion.model.Quiz;
+import com.lesvp.myJourneyCompanion.service.QuizService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
 import java.util.UUID;
 
 @Controller
 public class VideoGameController {
 
+    @Autowired
+    private MarkService markService;
     @Autowired
     private VideoGameService videoGameService;
     @Autowired
@@ -138,4 +139,29 @@ public class VideoGameController {
 
         return "topten";
     }
+
+    @PostMapping("/games/createMark")
+    public String CreateMark(@RequestParam String uuidVideoGame, @RequestParam String uuidAuthor, @RequestParam double givenMark) {
+
+        try {
+
+            if (markService.isExist(UUID.fromString(uuidVideoGame), UUID.fromString(uuidAuthor))) {
+                Mark actualMark = markService.getMark(UUID.fromString(uuidVideoGame), UUID.fromString(uuidAuthor));
+                actualMark.setMark(givenMark);
+                double average = markService.averageMark(UUID.fromString(uuidVideoGame));
+                videoGameService.update(UUID.fromString(uuidVideoGame), (int) average);
+            } else {
+                Mark newMark = markService.createMark(givenMark, UUID.fromString(uuidVideoGame), UUID.fromString(uuidAuthor));
+                double average = markService.averageMark(UUID.fromString(uuidVideoGame));
+                videoGameService.update(UUID.fromString(uuidVideoGame), (int) average);
+            }
+
+        } catch (Throwable e) {
+            return "error";
+        }
+
+        return "redirect:/games?uuid=" + uuidVideoGame;
+    }
+
+
 }
