@@ -33,12 +33,12 @@
             <div class="quiz">
                 <h2>All the quiz about this game</h2>
                 <div class="quiz-list">
-                    <div th:each="quiz: ${quiz}">
-                        <a th:href="'/answerQuiz?uuid=' + ${quiz.getUuidQuiz()}" class="quiz-item">
+                    <div th:each="quiz: ${quiz}" class="quiz-item">
+                        <a th:href="'/answerQuiz?uuid=' + ${quiz.getUuidQuiz()}" class="quiz-answer">
                             <h3 th:text="${quiz.getQuizTitle()}"></h3>
                             <span th:text="${quiz.getAuthor().getUsername()}"></span>
                         </a>
-                        <div th:if="${quiz.getAuthor().getUsername()} == ${#authentication.getName()}">
+                        <div th:if="${quiz.getAuthor().getUsername()} == ${#authentication.getName()}" class="quiz-delete">
                             <a th:href="'/deleteQuiz?uuidQuiz=' + ${quiz.getUuidQuiz()}"
                                class="boxed-button">
                                 Delete
