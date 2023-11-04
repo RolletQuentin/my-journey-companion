@@ -85,14 +85,14 @@
         </div>
         <div class="score" th:text="${game.getMark()}"></div>
         <div class="check">
-            <a th:href="'/addDonelist?videoGameUUID=' + ${game.getUuid()}">
+            <a th:href="'/addDonelist?videoGameUUID=' + ${game.getUuid()}" title="Add to Done List">
                 <img th:src="${user == null || !user.getDoneList().contains(game) ? 'https://img.icons8.com/ios-filled/50/000000/unchecked-checkbox.png' : 'https://img.icons8.com/ios-filled/50/checked-checkbox.png'}"
                      alt="checkbox"/>
             </a>
         </div>
 
         <div class="save">
-            <a th:href="'/addTodolist?videoGameUUID=' + ${game.getUuid()}" class="save-icon">
+            <a th:href="'/addTodolist?videoGameUUID=' + ${game.getUuid()}" class="save-icon" title="Add to To Do List">
                 <img th:src="${user == null || !user.getToDoList().contains(game)} ? 'https://img.icons8.com/ios/50/000000/bookmark-ribbon--v1.png' : 'https://img.icons8.com/ios-filled/50/000000/bookmark-ribbon.png'"
                      alt="bookmark"/>
             </a>
