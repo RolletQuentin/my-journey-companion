@@ -4,6 +4,7 @@ import com.lesvp.myJourneyCompanion.model.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,12 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Role> roles;
 
+    @OneToMany
+    private List<VideoGame> doneList;
+
+    @OneToMany
+    private List<VideoGame> toDoList;
+
     public User() {}
 
     public User(String username, String email, String hashed_password, List<Role> roles) {
@@ -30,5 +37,7 @@ public class User {
         this.email = email;
         this.hashed_password = hashed_password;
         this.roles = roles;
+        this.doneList = new ArrayList<>();
+        this.toDoList = new ArrayList<>();
     }
 }

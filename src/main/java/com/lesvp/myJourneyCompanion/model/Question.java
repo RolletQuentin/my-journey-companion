@@ -2,7 +2,9 @@ package com.lesvp.myJourneyCompanion.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -14,15 +16,15 @@ public class Question {
 
     private String questionTitle;
 
-
-    @ManyToOne
-    @JoinColumn(name = "quiz", referencedColumnName = "uuidQuiz")
-    private Quiz quiz;
+    @OneToMany(cascade = CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Answer> answers;
 
     public Question() {}
-
-    public Question(String questionTitle, Quiz quiz) {
+    public Question(String questionTitle, List<Answer> answers) {
         this.questionTitle = questionTitle;
-        this.quiz = quiz;
+        this.answers = answers;
     }
+
+
 }

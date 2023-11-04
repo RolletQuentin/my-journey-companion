@@ -109,6 +109,7 @@ input#search-bar {
     justify-content: center;
     margin: 10px;
     transition: 0.5s ease;
+    min-width: 350px;
     width: 30%;
 
     .img-container {
