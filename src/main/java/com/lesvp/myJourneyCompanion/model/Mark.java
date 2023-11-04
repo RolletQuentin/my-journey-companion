@@ -18,7 +18,7 @@ public class Mark {
 
     private double mark;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "linkedVideoGame", referencedColumnName = "uuid")
     private VideoGame linkedVideoGame;
 
