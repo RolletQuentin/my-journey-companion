@@ -36,3 +36,5 @@ stars.forEach((star, index) => {
         }
     });
 });
+
+

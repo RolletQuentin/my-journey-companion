@@ -31,6 +31,7 @@ public class SecurityConfiguration {
                                 "/games", "/games/*",
                                 "/topten",
                                 "/game-details", "game-details/*",
+                                "/about",
                                 "/error",
                                 "/css/**", "/js/**", "/fonts/**",
                                 "/signup", "/users/create")
