@@ -1,5 +1,27 @@
 # My Journey Companion - JEE Project
 
+## Quick Start
+
+1. Create the database in your MySQL server :
+```shell
+mysql -u username -p
+create database db_my_journey_companion;
+```
+
+2. Build the application :
+```shell
+.gradlew build
+```
+
+3. Run the application :
+```shell
+DATABASE_USERNAME=yourMySQLUsername DATABASE_PASSWORD=yourMySQLPassword ./gradlew bootRun
+```
+
+4. Access the application :
+
+You can access the application at http://localhost:8080
+
 ## Configuration
 
 The project uses Java 21
@@ -23,6 +45,8 @@ create database db_my_journey_companion;
 You have two variables to set :
 - DATABASE_USERNAME=yourMySqlUsername
 - DATABASE_PASSWORD=yourMySqlPassword
+
+### Run the application with your favourite IDE
 
 ### Login to the website
 
